@@ -3,7 +3,6 @@ const arrayRandom: number[] = [9, 2, 5, 6, 4, 3, 7, 10, 1, 8]
 const arrayOrdered: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 const arrayReversed: number[] = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
 
-// be careful: this is a very basic implementation which is nice to understand the deep principle of bubble sort (going through all comparisons) but it can be greatly improved for performances
 const bubbleSortBasic = (array: number[]): number[] => {
   let countOuter: number = 0
   let countInner: number = 0
@@ -38,7 +37,6 @@ bubbleSortBasic(arrayRandom.slice()) // => outer: 10 inner: 90 swap: 21
 bubbleSortBasic(arrayOrdered.slice()) // => outer: 10 inner: 90 swap: 0
 bubbleSortBasic(arrayReversed.slice()) // => outer: 10 inner: 90 swap: 45
 
-// correct implementation: this is the usual implementation of the bubble sort algorithm. Some loops execution are avoided if not they are not needed
 const bubbleSort = (array: number[]): number[] => {
   let countOuter: number = 0
   let countInner: number = 0
