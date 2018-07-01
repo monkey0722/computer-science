@@ -2,7 +2,7 @@
 const array: number[] = [9, 2, 5, 6, 4, 3, 7, 10, 1, 8]
 
 const insertionSort = (array: number[]): number[] => {
-  array.forEach((value: number, i:number) => {
+  array.forEach((_: number, i:number) => {
     let temp: number = array[i]
     let j: number = i - 1
     while (j >= 0 && array[j] > temp) {

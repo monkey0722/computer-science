@@ -18,7 +18,7 @@ const bubbleSort = (array: number[]): number[] => {
   let swapped: boolean
   do {
     swapped = false
-    array.forEach((i:number) => {
+    array.forEach((_:number, i:number) => {
       if(array[i] && array[i + 1] && array[i] > array[i + 1]) {
         [array[i], array[i + 1]] = [array[i + 1], array[i]]
         swapped = true
