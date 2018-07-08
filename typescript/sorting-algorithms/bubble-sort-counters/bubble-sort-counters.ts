@@ -19,7 +19,7 @@ const bubbleSortBasic = (array: number[]): void => {
 	  })
   })
 
-  console.log('outer:', countOuter, 'inner:', countInner, 'swap:', countSwap)
+  console.log(`outer: ${countOuter}, inner: ${countInner}, swap: ${countSwap}`)
 }
 
 bubbleSortBasic(arrayRandom.slice()) // => outer: 10 inner: 100 swap: 21
