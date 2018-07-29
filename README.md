@@ -1,1 +1,1 @@
-# Computer Science Learning
+# Computer Science in TypeScript
