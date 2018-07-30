@@ -1,0 +1,23 @@
+{
+  "name": "computer-science",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "prettier": "^1.14.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TakuKobachi/computer-science.git"
+  },
+  "author": "Taku Kobachi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TakuKobachi/computer-science/issues"
+  },
+  "homepage": "https://github.com/TakuKobachi/computer-science#readme"
+}
