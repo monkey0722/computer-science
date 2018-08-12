@@ -3,7 +3,7 @@ const randomArray: number[] = [9, 2, 5, 6, 4, 3, 7, 10, 1, 8]
 const orderedArray: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 const reversedArray: number[] = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
 
-const bubbleSortBasic = (array: number[]): void => {
+const bubbleSortCountersBasic = (array: number[]): void => {
   let countOuter: number = 0
   let countInner: number = 0
   let countSwap: number = 0
@@ -22,11 +22,11 @@ const bubbleSortBasic = (array: number[]): void => {
   console.log(`outer: ${countOuter}, inner: ${countInner}, swap: ${countSwap}`)
 }
 
-bubbleSortBasic(randomArray.slice()) // => outer: 10 inner: 90 swap: 21
-bubbleSortBasic(orderedArray.slice()) // => outer: 10 inner: 90 swap: 0
-bubbleSortBasic(reversedArray.slice()) // => outer: 10 inner: 90 swap: 45
+bubbleSortCountersBasic(randomArray.slice()) // => outer: 10 inner: 90 swap: 21
+bubbleSortCountersBasic(orderedArray.slice()) // => outer: 10 inner: 90 swap: 0
+bubbleSortCountersBasic(reversedArray.slice()) // => outer: 10 inner: 90 swap: 45
 
-const bubbleSort = (array: number[]): void => {
+const bubbleSortCounters = (array: number[]): void => {
   let countOuter: number = 0
   let countInner: number = 0
   let countSwap: number = 0
@@ -48,6 +48,6 @@ const bubbleSort = (array: number[]): void => {
   console.log('outer:', countOuter, 'inner:', countInner, 'swap:', countSwap)
 }
 
-bubbleSort(randomArray.slice()) // => outer: 9 inner: 90 swap: 21
-bubbleSort(orderedArray.slice()) // => outer: 1 inner: 10 swap: 0
-bubbleSort(reversedArray.slice()) // => outer: 10 inner: 100 swap: 45
+bubbleSortCounters(randomArray.slice()) // => outer: 9 inner: 90 swap: 21
+bubbleSortCounters(orderedArray.slice()) // => outer: 1 inner: 10 swap: 0
+bubbleSortCounters(reversedArray.slice()) // => outer: 10 inner: 100 swap: 45
