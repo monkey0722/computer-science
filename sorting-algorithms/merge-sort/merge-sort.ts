@@ -14,7 +14,7 @@ const mergeSortTopDown = (array: number[]): number[] => {
   return mergeTopDown(mergeSortTopDown(left), mergeSortTopDown(right))
 }
 
-const mergeTopDown = (left: number[], right:number[]): number[] => {
+const mergeTopDown = (left: any[], right:any[]): number[] => {
   const array: number[] = []
 
   while(left.length && right.length) {
