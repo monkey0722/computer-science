@@ -12,11 +12,9 @@ const quickSort = (array: number[]): number[] => {
   const greater: number[] = []
 
   for (let i = 1; i < array.length; i++) {
-    if (array[i] < pivot) {
-      lesser.push(array[i])
-    } else {
-      greater.push(array[i])
-    }
+    array[i] < pivot
+      ? lesser.push(array[i])
+      : greater.push(array[i])
   }
 
   return quickSort(lesser).concat(pivot, quickSort(greater))
