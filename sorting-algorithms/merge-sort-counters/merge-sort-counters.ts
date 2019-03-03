@@ -1,7 +1,7 @@
 // sample of arrays to merge-sort-counters
-const arrayRandom: number[] = [9, 2, 5, 6, 4, 3, 7, 10, 1, 8]
-const arrayOrdered: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-const arrayReversed: number[] = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+const arrayRandomForMergeSortCounters: number[] = [9, 2, 5, 6, 4, 3, 7, 10, 1, 8]
+const arrayOrderedForMergeSortCounters: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+const arrayReversedForMergeSortCounters: number[] = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
 
 let countOuter: number = 0
 let countInner: number = 0
@@ -41,15 +41,15 @@ const mergeCountersTopDown = (left: any[], right: any[]): number[] => {
   return array.concat(left.slice()).concat(right.slice())
 }
 
-mergeSortCountersTopDown(arrayRandom.slice()) // => outer: 19 inner: 24 swap: 0
+mergeSortCountersTopDown(arrayRandomForMergeSortCounters.slice()) // => outer: 19 inner: 24 swap: 0
 console.log('outer:', countOuter, 'inner:', countInner, 'swap:', countSwap)
 resetCounters()
 
-mergeSortCountersTopDown(arrayOrdered.slice()) // => outer: 19 inner: 15 swap: 0
+mergeSortCountersTopDown(arrayOrderedForMergeSortCounters.slice()) // => outer: 19 inner: 15 swap: 0
 console.log('outer:', countOuter, 'inner:', countInner, 'swap:', countSwap)
 resetCounters()
 
-mergeSortCountersTopDown(arrayReversed.slice()) // => outer: 19 inner: 19 swap: 0
+mergeSortCountersTopDown(arrayReversedForMergeSortCounters.slice()) // => outer: 19 inner: 19 swap: 0
 console.log('outer:', countOuter, 'inner:', countInner, 'swap:', countSwap)
 resetCounters()
 
@@ -92,14 +92,14 @@ const mergeCountersBottomUp = (array: number[], left: number, step: number): voi
   }
 }
 
-mergeSortCountersBottomUp(arrayRandom.slice()) // => outer: 4 inner: 9 swap: 36
-console.log('outer:', countOuter, 'inner:', countInner, 'swap:', countSwap);
+mergeSortCountersBottomUp(arrayRandomForMergeSortCounters.slice()) // => outer: 4 inner: 9 swap: 36
+console.log('outer:', countOuter, 'inner:', countInner, 'swap:', countSwap)
 resetCounters()
 
-mergeSortCountersBottomUp(arrayOrdered.slice()) // => outer: 4 inner: 9 swap: 36
-console.log('outer:', countOuter, 'inner:', countInner, 'swap:', countSwap);
+mergeSortCountersBottomUp(arrayOrderedForMergeSortCounters.slice()) // => outer: 4 inner: 9 swap: 36
+console.log('outer:', countOuter, 'inner:', countInner, 'swap:', countSwap)
 resetCounters()
 
-mergeSortCountersBottomUp(arrayReversed.slice()) // => outer: 4 inner: 9 swap: 36
-console.log('outer:', countOuter, 'inner:', countInner, 'swap:', countSwap);
+mergeSortCountersBottomUp(arrayReversedForMergeSortCounters.slice()) // => outer: 4 inner: 9 swap: 36
+console.log('outer:', countOuter, 'inner:', countInner, 'swap:', countSwap)
 resetCounters()

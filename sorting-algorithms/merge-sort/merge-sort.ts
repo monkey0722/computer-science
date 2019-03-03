@@ -1,5 +1,5 @@
 // array to sort
-const array: number[] = [9, 2, 5, 6, 4, 3, 7, 10, 1, 8]
+const arrayForMergingSort: number[] = [9, 2, 5, 6, 4, 3, 7, 10, 1, 8]
 
 // top-down implementation
 const mergeSortTopDown = (array: number[]): number[] => {
@@ -27,7 +27,7 @@ const mergeTopDown = (left: any[], right:any[]): number[] => {
   return array.concat(left.slice()).concat(right.slice())
 }
 
-console.log(mergeSortTopDown(array.slice())) // => [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+console.log(mergeSortTopDown(arrayForMergingSort.slice())) // => [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 
 // bottom-up implementation
 const mergeSortBottomUp = (array: number[]): number[] => {
@@ -65,4 +65,4 @@ const mergeBottomUp = (array: number[], left: number, step: number): void => {
   }
 }
 
-console.log(mergeSortBottomUp(array.slice())) // => [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+console.log(mergeSortBottomUp(arrayForMergingSort.slice())) // => [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]

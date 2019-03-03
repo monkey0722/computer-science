@@ -4,7 +4,7 @@ const arrayForSelectionSortCountersRandom: number[] = [9, 2, 5, 6, 4, 3, 7, 10, 
 const arrayForSelectionSortCountersOrdered: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 const arrayForSelectionSortCountersReversed: number[] = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
 
-const selectionSort = (array: number[]): void => {
+const selectionSortCounters = (array: number[]): void => {
   let countOuter: number = 0
   let countInner: number = 0
   let countSwap: number = 0
@@ -27,6 +27,6 @@ const selectionSort = (array: number[]): void => {
   console.log(`outer: ${countOuter}, inner: ${countInner}, swap: ${countSwap}`)
 }
 
-selectionSort(arrayForSelectionSortCountersRandom.slice()) // => outer: 10 inner: 45 swap: 5
-selectionSort(arrayForSelectionSortCountersOrdered.slice()) // => outer: 10 inner: 45 swap: 0
-selectionSort(arrayForSelectionSortCountersReversed.slice()) // => outer: 10 inner: 45 swap: 5
+selectionSortCounters(arrayForSelectionSortCountersRandom.slice()) // => outer: 10 inner: 45 swap: 5
+selectionSortCounters(arrayForSelectionSortCountersOrdered.slice()) // => outer: 10 inner: 45 swap: 0
+selectionSortCounters(arrayForSelectionSortCountersReversed.slice()) // => outer: 10 inner: 45 swap: 5
