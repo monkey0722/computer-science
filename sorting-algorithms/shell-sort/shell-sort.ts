@@ -1,10 +1,7 @@
-// array for shellsort
-const arrayForShellSort: number[] = [10, 2, 5, 6, 4, 3, 7, 9, 1, 8]
-
 // gaps for shellsort
 const gapsForShellSort: number[] = [701, 301, 132, 57, 23, 10, 4, 1]
 
-const shellSort = (array: number[]): number[] => {
+export const shellSort = (array: number[]): number[] => {
   for (let g = 0; g < gapsForShellSort.length; g++) {
     const gap: number = gapsForShellSort[g]
     for (let i: number = gap; i < array.length; i++) {
@@ -19,5 +16,3 @@ const shellSort = (array: number[]): number[] => {
   }
   return array
 }
-
-console.log(shellSort(arrayForShellSort)) // => [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]

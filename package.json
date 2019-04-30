@@ -20,7 +20,7 @@
     "ts-node": "^8.0.3",
     "tslint": "^5.14.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.3.4000"
+    "typescript": "^3.4.5"
   },
   "lint-staged": {
     "*.{ts}": [
@@ -28,6 +28,11 @@
       "tslint --fix -t stylish",
       "git add"
     ]
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    }
   },
   "repository": {
     "type": "git",
