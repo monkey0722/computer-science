@@ -1,8 +1,5 @@
-// array for quick sort
-const arrayForQuickSort: number[] = [3, 2, 5, 6, 4, 9, 7, 10, 1, 8]
-
 // basic implementation (pivot is the first element of the array)
-const quickSort = (array: number[]): number[] => {
+export const quickSort = (array: number[]): number[] => {
   if (array.length < 2) {
     return array
   }
@@ -19,5 +16,3 @@ const quickSort = (array: number[]): number[] => {
 
   return quickSort(lesser).concat(pivot, quickSort(greater))
 }
-
-console.log(quickSort(arrayForQuickSort.slice())) // => [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
