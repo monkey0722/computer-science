@@ -5,14 +5,8 @@ export const quickSort = (array: number[]): number[] => {
   }
 
   const pivot: number = array[0]
-  const lesser: number[] = []
-  const greater: number[] = []
+  const lesser = array.filter(item => item < pivot)
+  const greater = array.filter(item => item > pivot)
 
-  for (let i = 1; i < array.length; i++) {
-    array[i] < pivot
-      ? lesser.push(array[i])
-      : greater.push(array[i])
-  }
-
-  return quickSort(lesser).concat(pivot, quickSort(greater))
+  return [...quickSort(lesser), pivot, ...quickSort(greater)]
 }
