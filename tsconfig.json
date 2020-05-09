@@ -17,6 +17,13 @@
       "~": ["/"]
     }
   },
+  "include": [
+    "./sorting-algorithms/**/*",
+    "./recursion/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
   "types": [
     "typePatches"
   ]
