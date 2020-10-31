@@ -1,24 +1,24 @@
 export const bubbleSortBasic = (array: number[]): number[] => {
   for (let i = 0; i < array.length; i++) {
     for (let j = 1; j < array.length; j++) {
-      if(array[j - 1] > array[j]) {
-        [array[j - 1], array[j]] = [array[j], array[j - 1]]
+      if (array[j - 1] > array[j]) {
+        [array[j - 1], array[j]] = [array[j], array[j - 1]];
       }
     }
   }
-  return array
-}
+  return array;
+};
 
 export const bubbleSort = (array: number[]): number[] => {
-  let swapped: boolean
+  let swapped: boolean;
   do {
-    swapped = false
+    swapped = false;
     for (let i = 0; i < array.length; i++) {
-      if(array[i] && array[i + 1] && array[i] > array[i + 1]) {
-        [array[i], array[i + 1]] = [array[i + 1], array[i]]
-        swapped = true
+      if (array[i] && array[i + 1] && array[i] > array[i + 1]) {
+        [array[i], array[i + 1]] = [array[i + 1], array[i]];
+        swapped = true;
       }
     }
-  } while(swapped)
-  return array
-}
+  } while (swapped);
+  return array;
+};

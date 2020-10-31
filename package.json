@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "typecheck": "tsc --noEmit --skipLibCheck",
-    "lint": "eslint {sorting-algorithms,recursion}/**/*.ts"
+    "lint": "eslint {sorting-algorithms,recursion}/**/*.ts",
+    "prettier": "prettier --write \"**/*.{js,ts,tsx}\" --ignore-path \".gitignore\""
   },
   "dependencies": {
     "typescript": "^4.0.5"
