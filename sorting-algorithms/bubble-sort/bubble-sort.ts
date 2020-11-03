@@ -10,8 +10,9 @@ export function bubbleSortBasic<T>(items: Array<T>): Array<T> {
 }
 
 export function bubbleSort<T>(items: Array<T>): Array<T> {
-  let swapped = false;
+  let swapped = true;
   while (swapped) {
+    swapped = false;
     for (let i = 0; i < items.length; i++) {
       if (items[i] > items[i + 1]) {
         [items[i], items[i + 1]] = [items[i + 1], items[i]];
