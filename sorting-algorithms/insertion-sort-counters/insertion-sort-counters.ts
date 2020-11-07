@@ -1,15 +1,11 @@
-type Result = {
-  countOuter: number;
-  countInner: number;
-  countSwap: number;
-};
+import { CounterResult } from "../types";
 
-export function insertionSortCounters<T>(items: Array<T>): Result {
+export function insertionSortCounters<T>(items: Array<T>): CounterResult {
   let countOuter: number = 0;
   let countInner: number = 0;
   let countSwap: number = 0;
 
-  for (let i: number = 0; i < items.length; i++) {
+  for (let i = 0; i < items.length; i++) {
     countOuter++;
     const tmp: T = items[i];
     let j: number = i - 1;
