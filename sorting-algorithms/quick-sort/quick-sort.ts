@@ -1,9 +1,9 @@
-export function quickSort(items: number[]): number[] {
+export function quickSort<T>(items: Array<T>): Array<T> {
   if (items.length < 2) {
     return items;
   }
 
-  const pivot: number = items[0];
+  const pivot: T = items[0];
   const lesser = items.filter((item) => item < pivot);
   const greater = items.filter((item) => item > pivot);
 
