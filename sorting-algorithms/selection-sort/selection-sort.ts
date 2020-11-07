@@ -1,14 +1,14 @@
-export const selectionSort = (array: number[]): number[] => {
-  for (let i = 0; i < array.length; i++) {
+export function selectionSort<T>(items: Array<T>): Array<T> {
+  for (let i = 0; i < items.length; i++) {
     let min: number = i;
-    for (let j: number = i + 1; j < array.length; j++) {
-      if (array[j] < array[min]) {
+    for (let j: number = i + 1; j < items.length; j++) {
+      if (items[j] < items[min]) {
         min = j;
       }
     }
     if (i !== min) {
-      [array[i], array[min]] = [array[min], array[i]];
+      [items[i], items[min]] = [items[min], items[i]];
     }
   }
-  return array;
-};
+  return items;
+}
