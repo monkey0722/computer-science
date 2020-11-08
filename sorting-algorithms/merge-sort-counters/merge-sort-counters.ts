@@ -1,40 +1,7 @@
 // sample of arrays to merge-sort-counters
-const arrayRandomForMergeSortCounters: number[] = [
-  9,
-  2,
-  5,
-  6,
-  4,
-  3,
-  7,
-  10,
-  1,
-  8,
-];
-const arrayOrderedForMergeSortCounters: number[] = [
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7,
-  8,
-  9,
-  10,
-];
-const arrayReversedForMergeSortCounters: number[] = [
-  10,
-  9,
-  8,
-  7,
-  6,
-  5,
-  4,
-  3,
-  2,
-  1,
-];
+const randomArray: number[] = [9, 2, 5, 6, 4, 3, 7, 10, 1, 8];
+const orderedArray: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const reversedArray: number[] = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 
 let countOuter: number = 0;
 let countInner: number = 0;
@@ -46,103 +13,108 @@ const resetCounters = (): void => {
   countSwap = 0;
 };
 
-// top-down implementation
-const mergeSortCountersTopDown = (array: number[]): number[] => {
-  countOuter++;
-  if (array.length < 2) {
-    return array;
-  }
-
-  const middle: number = Math.floor(array.length / 2);
-  const left: number[] = array.slice(0, middle);
-  const right: number[] = array.slice(middle);
-
-  return mergeCountersTopDown(
-    mergeSortCountersTopDown(left),
-    mergeSortCountersTopDown(right)
-  );
-};
-
-const mergeCountersTopDown = (left: any[], right: any[]): number[] => {
+/**
+ * Top-down implementation
+ */
+function mergeCountersTopDown(left: number[], right: number[]): number[] {
   const array: number[] = [];
+  let nonFirst: number | undefined;
 
   while (left.length && right.length) {
     countInner++;
-    if (left[0] < right[0]) {
-      array.push(left.shift());
-    } else {
-      array.push(right.shift());
+    left[0] < right[0] ? (nonFirst = left.shift()) : (nonFirst = right.shift());
+    if (nonFirst) {
+      array.push(nonFirst);
     }
   }
   return array.concat(left.slice()).concat(right.slice());
-};
+}
 
-mergeSortCountersTopDown(arrayRandomForMergeSortCounters.slice()); // => outer: 19 inner: 24 swap: 0
+export function mergeSortCountersTopDown(items: number[]): number[] {
+  countOuter++;
+  if (items.length < 2) {
+    return items;
+  }
+
+  const middle: number = Math.floor(items.length / 2);
+  const leftItems: number[] = items.slice(0, middle);
+  const rightItems: number[] = items.slice(middle);
+
+  return mergeCountersTopDown(
+    mergeSortCountersTopDown(leftItems),
+    mergeSortCountersTopDown(rightItems)
+  );
+}
+
+mergeSortCountersTopDown(randomArray.slice()); // => outer: 19 inner: 24 swap: 0
 console.log("outer:", countOuter, "inner:", countInner, "swap:", countSwap);
 resetCounters();
 
-mergeSortCountersTopDown(arrayOrderedForMergeSortCounters.slice()); // => outer: 19 inner: 15 swap: 0
+mergeSortCountersTopDown(orderedArray.slice()); // => outer: 19 inner: 15 swap: 0
 console.log("outer:", countOuter, "inner:", countInner, "swap:", countSwap);
 resetCounters();
 
-mergeSortCountersTopDown(arrayReversedForMergeSortCounters.slice()); // => outer: 19 inner: 19 swap: 0
+mergeSortCountersTopDown(reversedArray.slice()); // => outer: 19 inner: 19 swap: 0
 console.log("outer:", countOuter, "inner:", countInner, "swap:", countSwap);
 resetCounters();
 
-// bottom-up implementation
-const mergeSortCountersBottomUp = (array: number[]): number[] => {
-  let step: number = 1;
-  while (step < array.length) {
+/**
+ * Bottom-up implementation
+ */
+function mergeSortCountersBottomUp(items: number[]): number[] {
+  let step = 1;
+  while (step < items.length) {
     countOuter++;
-    let left: number = 0;
-    while (left + step < array.length) {
+    let left = 0;
+    while (left + step < items.length) {
       countInner++;
-      mergeCountersBottomUp(array, left, step);
+      mergeCountersBottomUp(items, left, step);
       left += step * 2;
     }
     step *= 2;
   }
-  return array;
-};
+  return items;
+}
 
-const mergeCountersBottomUp = (
-  array: number[],
+function mergeCountersBottomUp(
+  items: number[],
   left: number,
   step: number
-): void => {
+): void {
+  const tmp: number[] = [];
   const right: number = left + step;
-  const end: number = Math.min(left + step * 2 - 1, array.length - 1);
-  let leftMoving: number = left;
-  let rightMoving: number = right;
-  const temp: number[] = [];
+  const last: number = Math.min(left + step * 2 - 1, items.length - 1);
 
-  for (let i = left; i <= end; i++) {
+  let moveLeft: number = left;
+  let moveRight: number = right;
+
+  for (let i = left; i <= last; i++) {
     if (
-      (array[leftMoving] <= array[rightMoving] || rightMoving > end) &&
-      leftMoving < right
+      (items[moveLeft] <= items[moveRight] || moveRight > last) &&
+      moveLeft < right
     ) {
-      temp[i] = array[leftMoving];
-      leftMoving++;
+      tmp[i] = items[moveLeft];
+      moveLeft++;
     } else {
-      temp[i] = array[rightMoving];
-      rightMoving++;
+      tmp[i] = items[moveRight];
+      moveRight++;
     }
   }
 
-  for (let j = left; j <= end; j++) {
+  for (let j = left; j <= last; j++) {
     countSwap++;
-    array[j] = temp[j];
+    items[j] = tmp[j];
   }
-};
+}
 
-mergeSortCountersBottomUp(arrayRandomForMergeSortCounters.slice()); // => outer: 4 inner: 9 swap: 36
+mergeSortCountersBottomUp(randomArray.slice()); // => outer: 4 inner: 9 swap: 36
 console.log("outer:", countOuter, "inner:", countInner, "swap:", countSwap);
 resetCounters();
 
-mergeSortCountersBottomUp(arrayOrderedForMergeSortCounters.slice()); // => outer: 4 inner: 9 swap: 36
+mergeSortCountersBottomUp(orderedArray.slice()); // => outer: 4 inner: 9 swap: 36
 console.log("outer:", countOuter, "inner:", countInner, "swap:", countSwap);
 resetCounters();
 
-mergeSortCountersBottomUp(arrayReversedForMergeSortCounters.slice()); // => outer: 4 inner: 9 swap: 36
+mergeSortCountersBottomUp(reversedArray.slice()); // => outer: 4 inner: 9 swap: 36
 console.log("outer:", countOuter, "inner:", countInner, "swap:", countSwap);
 resetCounters();
