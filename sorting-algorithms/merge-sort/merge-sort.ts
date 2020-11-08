@@ -1,71 +1,72 @@
-// array to sort
-const arrayForMergingSort: number[] = [9, 2, 5, 6, 4, 3, 7, 10, 1, 8];
-
-// top-down implementation
-const mergeSortTopDown = (array: number[]): number[] => {
-  if (array.length < 2) {
-    return array;
-  }
-
-  const middle: number = Math.floor(array.length / 2);
-  const left: number[] = array.slice(0, middle);
-  const right: number[] = array.slice(middle);
-
-  return mergeTopDown(mergeSortTopDown(left), mergeSortTopDown(right));
-};
-
-const mergeTopDown = (left: any[], right: any[]): number[] => {
+/**
+ * Top-down implementation
+ */
+function mergeTopDown(left: number[], right: number[]): number[] {
   const array: number[] = [];
+  let nonFirst: number | undefined;
 
   while (left.length && right.length) {
-    if (left[0] < right[0]) {
-      array.push(left.shift());
-    } else {
-      array.push(right.shift());
+    left[0] < right[0] ? (nonFirst = left.shift()) : (nonFirst = right.shift());
+    if (nonFirst) {
+      array.push(nonFirst);
     }
   }
   return array.concat(left.slice()).concat(right.slice());
-};
+}
 
-console.log(mergeSortTopDown(arrayForMergingSort.slice())); // => [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+export function mergeSortTopDown(items: number[]): number[] {
+  if (items.length < 2) {
+    return items;
+  }
 
-// bottom-up implementation
-const mergeSortBottomUp = (array: number[]): number[] => {
-  let step: number = 1;
-  while (step < array.length) {
-    let left: number = 0;
-    while (left + step < array.length) {
-      mergeBottomUp(array, left, step);
+  const middle = Math.floor(items.length / 2);
+  const leftItems = items.slice(0, middle);
+  const rightItems = items.slice(middle);
+
+  return mergeTopDown(
+    mergeSortTopDown(leftItems),
+    mergeSortTopDown(rightItems)
+  );
+}
+
+/**
+ * Bottom-up implementation
+ */
+function mergeBottomUp(items: number[], left: number, step: number): void {
+  const tmp: number[] = [];
+  const right: number = left + step;
+  const last = Math.min(left + step * 2 - 1, items.length - 1);
+
+  let moveLeft = left;
+  let moveRight = right;
+
+  for (let i = left; i <= last; i++) {
+    if (
+      (items[moveLeft] <= items[moveRight] || moveRight > last) &&
+      moveLeft < right
+    ) {
+      tmp[i] = items[moveLeft];
+      moveLeft++;
+    } else {
+      tmp[i] = items[moveRight];
+      moveRight++;
+    }
+  }
+
+  for (let j = left; j <= last; j++) {
+    items[j] = tmp[j];
+  }
+}
+
+export function mergeSortBottomUp(items: number[]): number[] {
+  let step = 1;
+  while (step < items.length) {
+    let left = 0;
+    while (left + step < items.length) {
+      mergeBottomUp(items, left, step);
       left += step * 2;
     }
     step *= 2;
   }
-  return array;
-};
-
-const mergeBottomUp = (array: number[], left: number, step: number): void => {
-  const right: number = left + step;
-  const end = Math.min(left + step * 2 - 1, array.length - 1);
-  let leftMoving = left;
-  let rightMoving = right;
-  const temp: number[] = [];
-
-  for (let i: number = left; i <= end; i++) {
-    if (
-      (array[leftMoving] <= array[rightMoving] || rightMoving > end) &&
-      leftMoving < right
-    ) {
-      temp[i] = array[leftMoving];
-      leftMoving++;
-    } else {
-      temp[i] = array[rightMoving];
-      rightMoving++;
-    }
-  }
-
-  for (let j: number = left; j <= end; j++) {
-    array[j] = temp[j];
-  }
-};
-
-console.log(mergeSortBottomUp(arrayForMergingSort.slice())); // => [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+  return items;
+}
