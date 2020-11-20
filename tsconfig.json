@@ -18,8 +18,9 @@
     }
   },
   "include": [
-    "./sorting-algorithms/**/*",
-    "./recursion/**/*"
+    "./data-structures/**/*",
+    "./recursion/**/*",
+    "./sorting-algorithms/**/*"
   ],
   "exclude": [
     "node_modules"
