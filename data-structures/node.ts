@@ -14,3 +14,19 @@ export class Node<T> implements AbstractNode {
     this.prev = null;
   }
 }
+
+export class DummyHeadNode implements AbstractNode {
+  public next: AbstractNode | null;
+
+  constructor() {
+    this.next = null;
+  }
+}
+
+export class DummyTailNode implements AbstractNode {
+  public prev: AbstractNode | null;
+
+  constructor() {
+    this.prev = null;
+  }
+}
