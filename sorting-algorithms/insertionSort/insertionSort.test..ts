@@ -1,4 +1,4 @@
-import { insertionSort } from "./insertion-sort";
+import { insertionSort } from "./insertionSort";
 
 describe("insertion-sort", () => {
   it("normal", () => {

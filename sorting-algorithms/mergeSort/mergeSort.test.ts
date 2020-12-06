@@ -1,4 +1,4 @@
-import { mergeSortTopDown, mergeSortBottomUp } from "./merge-sort";
+import { mergeSortTopDown, mergeSortBottomUp } from "./mergeSort";
 
 describe("merge-sort", () => {
   const array: number[] = [10, 2, 5, 6, 4, 3, 7, 9, 1, 8];

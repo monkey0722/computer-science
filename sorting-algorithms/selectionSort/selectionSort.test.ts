@@ -1,4 +1,4 @@
-import { selectionSort } from "./selection-sort";
+import { selectionSort } from "./selectionSort";
 
 describe("selection-sort", () => {
   it("normal", () => {

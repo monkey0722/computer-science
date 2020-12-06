@@ -1,4 +1,4 @@
-import { selectionSortCounters } from "./selection-sort-counters";
+import { selectionSortCounters } from "./selectionSortCounters";
 
 describe("selection-sort-counters", () => {
   const randomArray: number[] = [9, 2, 5, 6, 4, 3, 7, 10, 1, 8];

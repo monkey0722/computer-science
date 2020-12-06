@@ -1,7 +1,7 @@
 import {
   bubbleSortCountersBasic,
   bubbleSortCounters,
-} from "./bubble-sort-counters";
+} from "./bubbleSortCounters";
 
 describe("bubble-sort-counters", () => {
   const randomArray: number[] = [9, 2, 5, 6, 4, 3, 7, 10, 1, 8];

@@ -1,4 +1,4 @@
-import { shellSortCounters } from "./shell-sort-counters";
+import { shellSortCounters } from "./shellSortCounters";
 
 describe("shellSortCounters", () => {
   const randomArray: number[] = [8, 2, 3, 6, 4, 5, 7, 10, 1, 9];

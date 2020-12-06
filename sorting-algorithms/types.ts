@@ -1,5 +1,5 @@
-export type CounterResult = {
+export interface CounterResult {
   countOuter: number;
   countInner: number;
   countSwap: number;
-};
+}
