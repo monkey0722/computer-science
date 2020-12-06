@@ -1,4 +1,4 @@
-import { insertionSortCounters } from "./insertion-sort-counters";
+import { insertionSortCounters } from "./insertionSortCounters";
 
 describe("insertion-sort-counters", () => {
   const randomArray: number[] = [2, 8, 5, 6, 4, 3, 10, 7, 1, 9];

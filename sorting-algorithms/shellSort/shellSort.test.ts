@@ -1,4 +1,4 @@
-import { shellSort } from "./shell-sort";
+import { shellSort } from "./shellSort";
 
 describe("shell-sort", () => {
   it("normal", () => {
