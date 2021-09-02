@@ -1,5 +1,5 @@
 export class Graph<T, V> {
-  private nodes: Map<
+  #nodes: Map<
     T,
     {
       to: Map<T, V>;
@@ -8,20 +8,19 @@ export class Graph<T, V> {
   >;
 
   constructor() {
-    this.nodes = new Map();
+    this.#nodes = new Map();
   }
 
-  private getIncomingNodes(value: T): ReadonlyArray<T> {
-    const incoming = this.nodes.get(value)?.from;
+  #getIncomingNodes(value: T): ReadonlyArray<T> {
+    const incoming = this.#nodes.get(value)?.from;
     return Array.from(incoming != null ? incoming : []);
   }
 
   addNode(value: T): this {
-    if (this.nodes.has(value)) {
+    if (this.#nodes.has(value)) {
       return this;
     }
-
-    this.nodes.set(value, {
+    this.#nodes.set(value, {
       to: new Map<T, V>(),
       from: new Set<T>(),
     });
@@ -30,50 +29,50 @@ export class Graph<T, V> {
   }
 
   removeNode(value: T): this {
-    const incoming = this.getIncomingNodes(value);
+    const incoming = this.#getIncomingNodes(value);
     incoming.forEach((incomingNode) => {
       this.removeEdge(incomingNode, value);
     });
-
-    this.nodes.delete(value);
+    this.#nodes.delete(value);
     return this;
   }
 
   get size(): number {
-    return this.nodes.size;
+    return this.#nodes.size;
   }
 
   addEdge(valueA: T, valueB: T, weight: V): this {
     this.addNode(valueA);
     this.addNode(valueB);
-    const nodeA = this.nodes.get(valueA);
-    (nodeA?.to as Map<T, V>).set(valueB, weight);
-    (this.nodes.get(valueB)?.from as Set<T>).add(valueA);
+
+    const nodeA = this.#nodes.get(valueA);
+    nodeA?.to.set(valueB, weight);
+
+    this.#nodes.get(valueB)?.from.add(valueA);
     return this;
   }
 
   removeEdge(valueA: T, valueB: T): this {
-    const nodeA = this.nodes.get(valueA)?.to;
+    const nodeA = this.#nodes.get(valueA)?.to;
     if (nodeA == null) {
       return this;
     }
     nodeA.delete(valueB);
 
-    (this.nodes.get(valueB)?.from as Set<T>).delete(valueA);
+    this.#nodes.get(valueB)?.from.delete(valueA);
     return this;
   }
 
   getEdgeWeight(valueA: T, valueB: T): V | undefined {
-    const nodeA = this.nodes.get(valueA)?.to;
+    const nodeA = this.#nodes.get(valueA)?.to;
     if (nodeA == null) {
       return undefined;
     }
-
     return nodeA.get(valueB);
   }
 
   getNeighbors(value: T): ReadonlyArray<T> {
-    const neighbors = this.nodes.get(value)?.to;
+    const neighbors = this.#nodes.get(value)?.to;
     return Array.from(neighbors != null ? neighbors.keys() : []);
   }
 
