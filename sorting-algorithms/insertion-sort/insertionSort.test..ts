@@ -1,7 +1,7 @@
-import { insertionSort } from "./insertionSort";
+import {insertionSort} from './insertionSort';
 
-describe("insertion-sort", () => {
-  it("normal", () => {
+describe('insertion-sort', () => {
+  it('normal', () => {
     const array = [10, 2, 5, 6, 4, 3, 7, 9, 1, 8];
     const result = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 

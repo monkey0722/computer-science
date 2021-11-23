@@ -47,15 +47,15 @@ export function mergeSortCountersTopDown(items: number[]): number[] {
 }
 
 mergeSortCountersTopDown(randomArray.slice()); // => outer: 19 inner: 24 swap: 0
-console.log("outer:", countOuter, "inner:", countInner, "swap:", countSwap);
+console.log('outer:', countOuter, 'inner:', countInner, 'swap:', countSwap);
 resetCounters();
 
 mergeSortCountersTopDown(orderedArray.slice()); // => outer: 19 inner: 15 swap: 0
-console.log("outer:", countOuter, "inner:", countInner, "swap:", countSwap);
+console.log('outer:', countOuter, 'inner:', countInner, 'swap:', countSwap);
 resetCounters();
 
 mergeSortCountersTopDown(reversedArray.slice()); // => outer: 19 inner: 19 swap: 0
-console.log("outer:", countOuter, "inner:", countInner, "swap:", countSwap);
+console.log('outer:', countOuter, 'inner:', countInner, 'swap:', countSwap);
 resetCounters();
 
 /**
@@ -108,13 +108,13 @@ function mergeCountersBottomUp(
 }
 
 mergeSortCountersBottomUp(randomArray.slice()); // => outer: 4 inner: 9 swap: 36
-console.log("outer:", countOuter, "inner:", countInner, "swap:", countSwap);
+console.log('outer:', countOuter, 'inner:', countInner, 'swap:', countSwap);
 resetCounters();
 
 mergeSortCountersBottomUp(orderedArray.slice()); // => outer: 4 inner: 9 swap: 36
-console.log("outer:", countOuter, "inner:", countInner, "swap:", countSwap);
+console.log('outer:', countOuter, 'inner:', countInner, 'swap:', countSwap);
 resetCounters();
 
 mergeSortCountersBottomUp(reversedArray.slice()); // => outer: 4 inner: 9 swap: 36
-console.log("outer:", countOuter, "inner:", countInner, "swap:", countSwap);
+console.log('outer:', countOuter, 'inner:', countInner, 'swap:', countSwap);
 resetCounters();

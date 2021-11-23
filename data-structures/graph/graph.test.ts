@@ -1,8 +1,8 @@
-import { Graph } from "./graph";
+import {Graph} from './graph';
 
-describe("Graph", () => {
-  describe("constructor", () => {
-    test("a new graph should be created", () => {
+describe('Graph', () => {
+  describe('constructor', () => {
+    test('a new graph should be created', () => {
       const graph = new Graph();
 
       expect(graph).toBeDefined();
@@ -10,8 +10,8 @@ describe("Graph", () => {
     });
   });
 
-  describe("addNode", () => {
-    test("node should be added to graph", () => {
+  describe('addNode', () => {
+    test('node should be added to graph', () => {
       const graph = new Graph();
       graph.addNode(1);
 
@@ -19,8 +19,8 @@ describe("Graph", () => {
     });
   });
 
-  describe("removeNode", () => {
-    test("node should be removed from the graph", () => {
+  describe('removeNode', () => {
+    test('node should be removed from the graph', () => {
       const graph = new Graph();
       graph.addNode(1);
       expect(graph.size).toBe(1);
@@ -35,7 +35,7 @@ describe("Graph", () => {
       expect(graph.size).toBe(0);
     });
 
-    test("edge should be removed between connected nodes", () => {
+    test('edge should be removed between connected nodes', () => {
       const graph = new Graph();
       graph.addEdge(1, 2, 3);
       graph.addEdge(2, 1, 3);
@@ -46,7 +46,7 @@ describe("Graph", () => {
       expect(graph.getNeighbors(2)).toHaveLength(0);
     });
 
-    test.only("edge should be removed from the other node", () => {
+    test.only('edge should be removed from the other node', () => {
       const graph = new Graph();
       graph.addEdge(1, 2, 3);
       graph.removeNode(2);
@@ -54,7 +54,7 @@ describe("Graph", () => {
       expect(graph.getNeighbors(1)).toHaveLength(0);
     });
 
-    test("cyclic node", () => {
+    test('cyclic node', () => {
       const graph = new Graph();
       graph.addEdge(1, 1, 3);
       expect(graph.size).toBe(1);
@@ -65,9 +65,9 @@ describe("Graph", () => {
     });
   });
 
-  describe("edges", () => {
-    describe("addEdge", () => {
-      test("connect different nodes", () => {
+  describe('edges', () => {
+    describe('addEdge', () => {
+      test('connect different nodes', () => {
         const graph = new Graph();
         graph.addEdge(1, 2, 3);
 
@@ -77,7 +77,7 @@ describe("Graph", () => {
         expect(graph.getEdgeWeight(1, 2)).toBe(3);
       });
 
-      test("connect same node", () => {
+      test('connect same node', () => {
         const graph = new Graph();
         graph.addEdge(1, 1, 2);
 
@@ -87,8 +87,8 @@ describe("Graph", () => {
       });
     });
 
-    describe("removeEdge", () => {
-      test("remove edge between different nodes", () => {
+    describe('removeEdge', () => {
+      test('remove edge between different nodes', () => {
         const graph = new Graph();
         graph.addEdge(1, 2, 3);
         expect(graph.isAdjacent(1, 2)).toBe(true);
@@ -104,7 +104,7 @@ describe("Graph", () => {
         expect(graph.getNeighbors(2)).toHaveLength(0);
       });
 
-      test("remove edge between bi-directional nodes", () => {
+      test('remove edge between bi-directional nodes', () => {
         const graph = new Graph();
         graph.addEdge(1, 2, 3);
         graph.addEdge(2, 1, 4);
@@ -123,7 +123,7 @@ describe("Graph", () => {
         expect(graph.getNeighbors(2)).toHaveLength(1);
       });
 
-      test("remove edge between same node", () => {
+      test('remove edge between same node', () => {
         const graph = new Graph();
         graph.addEdge(1, 1, 2);
 
@@ -135,7 +135,7 @@ describe("Graph", () => {
         expect(graph.size).toBe(1);
       });
 
-      test("remove non-existent edge", () => {
+      test('remove non-existent edge', () => {
         const graph = new Graph();
         expect(() => {
           graph.removeEdge(1, 2);
@@ -143,8 +143,8 @@ describe("Graph", () => {
       });
     });
 
-    describe("getEdgeWeight", () => {
-      test("weight between connected nodes", () => {
+    describe('getEdgeWeight', () => {
+      test('weight between connected nodes', () => {
         const graph = new Graph();
         graph.addEdge(1, 2, 3);
 
@@ -152,28 +152,28 @@ describe("Graph", () => {
         expect(graph.getEdgeWeight(1, 2)).toBe(3);
       });
 
-      test("weight between non-existent edges", () => {
+      test('weight between non-existent edges', () => {
         const graph = new Graph();
         graph.addEdge(1, 2, 3);
 
         expect(graph.getEdgeWeight(1, 1)).toBeUndefined();
       });
 
-      test("weight for non-existent nodes", () => {
+      test('weight for non-existent nodes', () => {
         const graph = new Graph();
         expect(graph.getEdgeWeight(1, 2)).toBeUndefined();
       });
     });
   });
 
-  describe("getNeighbors", () => {
-    test("non-empty neighbors", () => {
+  describe('getNeighbors', () => {
+    test('non-empty neighbors', () => {
       const graph = new Graph();
       graph.addEdge(1, 2, 3);
       expect(graph.getNeighbors(1)).toEqual(expect.arrayContaining([2]));
     });
 
-    test("empty neighbors", () => {
+    test('empty neighbors', () => {
       const graph = new Graph();
       graph.addNode(1);
       expect(graph.getNeighbors(1)).toHaveLength(0);

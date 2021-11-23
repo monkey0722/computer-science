@@ -1,4 +1,4 @@
-import { CounterResults } from "../types";
+import {CounterResults} from '../types';
 
 const gaps = [701, 301, 132, 57, 23, 10, 4, 1];
 
@@ -22,5 +22,5 @@ export function shellSortCounters(items: Array<number>): CounterResults {
       items[last] = tmp;
     }
   }
-  return { countOuter, countInner, countSwap };
+  return {countOuter, countInner, countSwap};
 }

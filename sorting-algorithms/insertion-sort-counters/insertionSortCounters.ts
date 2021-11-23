@@ -1,4 +1,4 @@
-import { CounterResults } from "../types";
+import {CounterResults} from '../types';
 
 export function insertionSortCounters<T>(items: Array<T>): CounterResults {
   let countOuter = 0;
@@ -17,5 +17,5 @@ export function insertionSortCounters<T>(items: Array<T>): CounterResults {
     }
     items[j + 1] = tmp;
   }
-  return { countOuter, countInner, countSwap };
+  return {countOuter, countInner, countSwap};
 }

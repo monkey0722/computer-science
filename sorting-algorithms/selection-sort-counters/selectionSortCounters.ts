@@ -1,4 +1,4 @@
-import { CounterResults } from "../types";
+import {CounterResults} from '../types';
 
 export function selectionSortCounters<T>(items: Array<T>): CounterResults {
   let countOuter = 0;
@@ -19,5 +19,5 @@ export function selectionSortCounters<T>(items: Array<T>): CounterResults {
       [items[i], items[min]] = [items[min], items[i]];
     }
   }
-  return { countOuter, countInner, countSwap };
+  return {countOuter, countInner, countSwap};
 }

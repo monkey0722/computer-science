@@ -1,4 +1,4 @@
-import { Node, DummyHeadNode, DummyTailNode } from "../node";
+import {Node, DummyHeadNode, DummyTailNode} from '../node';
 
 export class Queue<T> {
   #dummyHead: DummyHeadNode;

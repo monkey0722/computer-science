@@ -1,4 +1,4 @@
-import { CounterResults } from "../types";
+import {CounterResults} from '../types';
 
 export function bubbleSortCountersBasic<T>(items: Array<T>): CounterResults {
   let countOuter = 0;
@@ -15,7 +15,7 @@ export function bubbleSortCountersBasic<T>(items: Array<T>): CounterResults {
       }
     }
   }
-  return { countOuter, countInner, countSwap };
+  return {countOuter, countInner, countSwap};
 }
 
 export function bubbleSortCounters<T>(items: Array<T>): CounterResults {
@@ -36,5 +36,5 @@ export function bubbleSortCounters<T>(items: Array<T>): CounterResults {
       }
     }
   }
-  return { countOuter, countInner, countSwap };
+  return {countOuter, countInner, countSwap};
 }

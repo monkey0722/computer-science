@@ -1,4 +1,4 @@
-import { Node } from "../node";
+import {Node} from '../node';
 
 export class Stack<T> {
   #tail: Node<T> | null;
