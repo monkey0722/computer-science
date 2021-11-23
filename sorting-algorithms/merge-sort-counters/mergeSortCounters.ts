@@ -1,17 +1,17 @@
 // sample of arrays to merge-sort-counters
-const randomArray: number[] = [9, 2, 5, 6, 4, 3, 7, 10, 1, 8];
-const orderedArray: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const reversedArray: number[] = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+const randomArray = [9, 2, 5, 6, 4, 3, 7, 10, 1, 8];
+const orderedArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const reversedArray = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 
-let countOuter: number = 0;
-let countInner: number = 0;
-let countSwap: number = 0;
+let countOuter = 0;
+let countInner = 0;
+let countSwap = 0;
 
-const resetCounters = (): void => {
+function resetCounters() {
   countOuter = 0;
   countInner = 0;
   countSwap = 0;
-};
+}
 
 /**
  * Top-down implementation

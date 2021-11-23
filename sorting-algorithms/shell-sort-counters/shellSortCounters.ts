@@ -1,18 +1,18 @@
-import { CounterResult } from "../types";
+import { CounterResults } from "../types";
 
 const gaps = [701, 301, 132, 57, 23, 10, 4, 1];
 
-export function shellSortCounters<T>(items: Array<T>): CounterResult {
-  let countOuter: number = 0;
-  let countInner: number = 0;
-  let countSwap: number = 0;
+export function shellSortCounters(items: Array<number>): CounterResults {
+  let countOuter = 0;
+  let countInner = 0;
+  let countSwap = 0;
 
   for (let g = 0; g < gaps.length; g++) {
-    const gap: number = gaps[g];
+    const gap = gaps[g];
     for (let i = gap; i < items.length; i++) {
       countOuter++;
-      const tmp: T = items[i];
-      let last: number = i;
+      const tmp = items[i];
+      let last = i;
       for (let j = i; j >= gap && items[j - gap] > tmp; j -= gap) {
         countInner++;
         countSwap++;
