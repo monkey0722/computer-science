@@ -1,4 +1,4 @@
-import { BinaryTreeNode } from "./binaryTreeNode";
+import {BinaryTreeNode} from './binaryTreeNode';
 
 export class BinaryTree<T> {
   public root: BinaryTreeNode<T> | null;
