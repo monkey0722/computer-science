@@ -20,7 +20,7 @@
   "include": [
     "./data-structures/**/*",
     "./recursion/**/*",
-    "./sorting-algorithms/**/*"
+    "./algorithms/**/*"
   ],
   "exclude": [
     "node_modules"

@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest",
     "typecheck": "tsc --noEmit --skipLibCheck",
-    "lint": "eslint {data-structures,sorting-algorithms,recursion}/**/*.ts",
-    "lint-fix": "eslint --fix {data-structures,sorting-algorithms,recursion}/**/*.ts",
+    "lint": "eslint {data-structures,algorithms,recursion}/**/*.ts",
+    "lint-fix": "eslint --fix {data-structures,algorithms,recursion}/**/*.ts",
     "prettier": "prettier --write \"**/*.{ts,tsx}\" --ignore-path \".gitignore\""
   },
   "dependencies": {
