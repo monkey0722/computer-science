@@ -6,9 +6,9 @@
   "scripts": {
     "test": "jest",
     "typecheck": "tsc --noEmit --skipLibCheck",
-    "lint": "eslint {data-structures,sorting-algorithms,recursion}/**/*.ts",
-    "lint-fix": "eslint --fix {data-structures,sorting-algorithms,recursion}/**/*.ts",
-    "prettier": "prettier --write \"**/*.{ts,tsx}\" --ignore-path \".gitignore\""
+    "lint": "eslint ./**/*.ts",
+    "lint-fix": "eslint --fix ./**/*.ts",
+    "prettier": "prettier --write \"./**/*.{ts,tsx}\" --ignore-path \".gitignore\""
   },
   "dependencies": {
     "typescript": "^4.5.2"
