@@ -1,6 +1,6 @@
-export function linearSearch<T>(array: T[], value: T): number | undefined {
-  for (let i = 0; i < array.length; i++) {
-    if (array[i] === value) {
+export function linearSearch<T>(arr: T[], value: T): number | undefined {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === value) {
       return i;
     }
   }
