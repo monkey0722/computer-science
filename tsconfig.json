@@ -19,7 +19,7 @@
   },
   "include": [
     "./data-structures/**/*",
-    "./recursion/**/*",
+    "./math/**/*",
     "./algorithms/**/*"
   ],
   "exclude": [
