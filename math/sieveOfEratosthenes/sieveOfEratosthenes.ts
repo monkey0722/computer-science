@@ -5,7 +5,7 @@
  */
 export function sieveOfEratosthenes(n: number): Array<number> {
   // Create an array containing all integers from 2 to n
-  let primes = new Array(n + 1);
+  const primes = new Array<boolean>(n + 1);
   primes.fill(true);
 
   // Mark all multiples of each prime as composite
@@ -18,7 +18,7 @@ export function sieveOfEratosthenes(n: number): Array<number> {
   }
 
   // Collect all remaining prime numbers
-  let result: Array<number> = [];
+  const result: Array<number> = [];
   for (let i = 2; i <= n; i++) {
     if (primes[i]) {
       result.push(i);

@@ -4,7 +4,7 @@
  * @returns {Array<number>} An array of prime factors.
  */
 export function primeFactors(n: number): Array<number> {
-  let factors: Array<number> = [];
+  const factors: Array<number> = [];
   for (let i = 2; i <= n / i; i++) {
     while (n % i === 0) {
       factors.push(i);
