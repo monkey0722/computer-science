@@ -11,6 +11,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [14, 16, 18]
     timeout-minutes: 300
     steps:
       - name: checkout pushed commit
