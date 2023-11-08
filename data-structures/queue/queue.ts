@@ -1,66 +1,67 @@
-import {Node, DummyHeadNode, DummyTailNode} from '../node';
-
+/**
+ * Class representing a queue data structure.
+ * @template T - The type of elements held in the queue.
+ */
 export class Queue<T> {
-  #dummyHead: DummyHeadNode;
-  #dummyTail: DummyTailNode;
-  #length: number;
+  private storage: T[] = [];
+  constructor(private capacity: number = Infinity) {}
 
-  constructor() {
-    this.#dummyHead = new DummyHeadNode();
-    this.#dummyTail = new DummyTailNode();
-    this.#dummyHead.next = this.#dummyTail;
-    this.#dummyTail.prev = this.#dummyHead;
-    this.#length = 0;
+  /**
+   * Adds an element to the back of the queue.
+   * @param {T} item - The item to be added to the queue.
+   * @throws {Error} if the queue has reached its capacity limit.
+   */
+  enqueue(item: T): void {
+    if (this.size() === this.capacity) {
+      throw Error('Queue is full');
+    }
+    this.storage.push(item);
   }
 
-  isEmpty(): boolean {
-    return this.#length === 0;
-  }
-
-  enqueue(value: T): number {
-    const node = new Node(value);
-    const prevLast = this.#dummyTail.prev as Node<T> | DummyHeadNode;
-
-    prevLast.next = node;
-    node.prev = prevLast;
-    node.next = this.#dummyTail;
-    this.#dummyTail.prev = node;
-    this.#length++;
-
-    return this.#length;
-  }
-
+  /**
+   * Removes the element from the front of the queue and returns it.
+   * @return {T | undefined} The element at the front of the queue or undefined if the queue is empty.
+   */
   dequeue(): T | undefined {
-    if (this.isEmpty()) {
-      return undefined;
-    }
-
-    const node = this.#dummyHead.next as Node<T>;
-    const newFirst = node.next as Node<T> | DummyTailNode;
-
-    this.#dummyHead.next = newFirst;
-    newFirst.prev = this.#dummyHead;
-    node.next = null;
-    this.#length--;
-
-    return node.value;
+    return this.storage.shift();
   }
 
-  front(): T | undefined {
-    if (this.isEmpty()) {
-      return undefined;
-    }
-    return (this.#dummyHead.next as Node<T>).value;
+  /**
+   * Returns the number of elements in the queue.
+   * @return {number} The size of the queue.
+   */
+  size(): number {
+    return this.storage.length;
   }
 
-  back(): T | undefined {
-    if (this.isEmpty()) {
-      return undefined;
-    }
-    return (this.#dummyTail.prev as Node<T>).value;
+  /**
+   * Checks if the queue is empty.
+   * @return {boolean} True if the queue is empty, false otherwise.
+   */
+  isEmpty(): boolean {
+    return this.size() === 0;
   }
 
-  get length(): number {
-    return this.#length;
+  /**
+   * Checks if the queue has reached its capacity.
+   * @return {boolean} True if the queue is full, false otherwise.
+   */
+  isFull(): boolean {
+    return this.size() === this.capacity;
+  }
+
+  /**
+   * Returns the element at the front of the queue without removing it.
+   * @return {T | undefined} The element at the front of the queue or undefined if the queue is empty.
+   */
+  peek(): T | undefined {
+    return this.storage[0];
+  }
+
+  /**
+   * Empties the queue of all elements.
+   */
+  clear(): void {
+    this.storage = [];
   }
 }
