@@ -1,118 +1,121 @@
 import {BinaryTreeNode} from './binaryTreeNode';
 
+/**
+ * A binary search tree class with methods to insert, search, traverse, and remove nodes.
+ */
 export class BinaryTree<T> {
-  public root: BinaryTreeNode<T> | null;
+  public root: BinaryTreeNode<T> | null = null;
 
-  constructor(value?: T) {
-    this.root = value == null ? null : new BinaryTreeNode(value);
+  /**
+   * Inserts a new value into the binary search tree.
+   * @param {T} value The value to insert.
+   */
+  insert(value: T) {
+    const newNode = new BinaryTreeNode(value);
+    if (this.root === null) {
+      this.root = newNode;
+    } else {
+      this.insertNode(this.root, newNode);
+    }
   }
 
-  size(): number {
-    if (!this.root) {
-      return 0;
+  private insertNode(node: BinaryTreeNode<T>, newNode: BinaryTreeNode<T>) {
+    if (newNode.value < node.value) {
+      if (node.left === null) {
+        node.left = newNode;
+      } else {
+        this.insertNode(node.left, newNode);
+      }
+    } else {
+      if (node.right === null) {
+        node.right = newNode;
+      } else {
+        this.insertNode(node.right, newNode);
+      }
     }
-
-    return this.root.size();
   }
 
-  height(): number {
-    if (!this.root) {
-      return 0;
-    }
-
-    return this.root.height();
+  /**
+   * Searches for a value in the binary search tree.
+   * @param {T} value The value to search for.
+   * @returns {boolean} True if the value is found, false otherwise.
+   */
+  contains(value: T): boolean {
+    return this.search(this.root, value) !== null;
   }
 
-  inOrder(): Array<T> {
-    const arr: Array<T> = [];
-
-    function inOrderImpl(node: BinaryTreeNode<T> | null) {
-      if (node == null) {
-        return;
-      }
-
-      inOrderImpl(node.left);
-      arr.push(node.value);
-      inOrderImpl(node.right);
+  private search(
+    node: BinaryTreeNode<T> | null,
+    value: T
+  ): BinaryTreeNode<T> | null {
+    if (node === null) {
+      return null;
     }
 
-    inOrderImpl(this.root);
-    return arr;
+    if (value < node.value) {
+      return this.search(node.left, value);
+    } else if (value > node.value) {
+      return this.search(node.right, value);
+    } else {
+      return node;
+    }
   }
 
-  preOrder(): Array<T> {
-    const arr: Array<T> = [];
-
-    function preOrderImpl(node: BinaryTreeNode<T> | null) {
-      if (!node) {
-        return;
-      }
-
-      arr.push(node.value);
-      preOrderImpl(node.left);
-      preOrderImpl(node.right);
+  /**
+   * Traverses the binary search tree in order (left, root, right).
+   * @param {function} visit Function to call on each value.
+   */
+  inOrderTraverse(visit: (value: T) => void) {
+    function traverse(node: BinaryTreeNode<T> | null) {
+      if (node === null) return;
+      traverse(node.left);
+      visit(node.value);
+      traverse(node.right);
     }
-
-    preOrderImpl(this.root);
-    return arr;
+    traverse(this.root);
   }
 
-  postOrder(): Array<T> {
-    const arr: Array<T> = [];
-
-    function postOrderImpl(node: BinaryTreeNode<T> | null) {
-      if (!node) {
-        return;
-      }
-
-      postOrderImpl(node.left);
-      postOrderImpl(node.right);
-      arr.push(node.value);
-    }
-
-    postOrderImpl(this.root);
-    return arr;
+  /**
+   * Removes a value from the binary search tree.
+   * @param {T} value The value to remove.
+   */
+  remove(value: T) {
+    this.root = this.removeNode(this.root, value);
   }
 
-  isBalanced(): boolean {
-    function isBalancedImpl(node: BinaryTreeNode<T> | null): boolean {
-      if (!node) {
-        return true;
-      }
-
-      const leftHeight = node.left ? node.left.height() : -1;
-      const rightHeight = node.right ? node.right.height() : -1;
-
-      if (Math.abs(leftHeight - rightHeight) > 1) {
-        return false;
-      }
-
-      return isBalancedImpl(node.left) && isBalancedImpl(node.right);
+  private removeNode(
+    node: BinaryTreeNode<T> | null,
+    value: T
+  ): BinaryTreeNode<T> | null {
+    if (node === null) {
+      return null;
     }
-
-    return isBalancedImpl(this.root);
+    if (value < node.value) {
+      node.left = this.removeNode(node.left, value);
+      return node;
+    } else if (value > node.value) {
+      node.right = this.removeNode(node.right, value);
+      return node;
+    } else {
+      // Node with only one child or no child
+      if (node.left === null) {
+        return node.right;
+      } else if (node.right === null) {
+        return node.left;
+      }
+      // Node with two children: Get the inorder successor (smallest in the right subtree)
+      node.value = this.findMinValue(node.right);
+      node.right = this.removeNode(node.right, node.value);
+      return node;
+    }
   }
 
-  isComplete(): boolean {
-    function isCompleteImpl(
-      node: BinaryTreeNode<T> | null,
-      index: number,
-      numNodes: number
-    ): boolean {
-      if (!node) {
-        return true;
-      }
-
-      if (index >= numNodes) {
-        return false;
-      }
-
-      return (
-        isCompleteImpl(node.left, 2 * index + 1, numNodes) &&
-        isCompleteImpl(node.right, 2 * index + 2, numNodes)
-      );
+  private findMinValue(node: BinaryTreeNode<T>): T {
+    let minv = node.value;
+    while (node.left !== null) {
+      minv = node.left.value;
+      node = node.left;
     }
-
-    return isCompleteImpl(this.root, 0, this.size());
+    return minv;
   }
 }
