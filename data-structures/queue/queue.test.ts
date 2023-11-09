@@ -1,92 +1,94 @@
 import {Queue} from './queue';
 
 describe('Queue', () => {
-  test('constructor', () => {
-    const q = new Queue();
-    expect(q).toBeTruthy();
-    expect(q.length).toBe(0);
+  let queue: Queue<number>;
+
+  beforeEach(() => {
+    queue = new Queue<number>();
   });
 
-  test('isEmpty', () => {
-    const q = new Queue();
-    expect(q.isEmpty()).toBeTruthy();
-    q.enqueue(100);
-    expect(q.isEmpty()).toBeFalsy();
-    q.dequeue();
-    expect(q.isEmpty()).toBeTruthy();
+  test('enqueue should add an item to the queue', () => {
+    queue.enqueue(1);
+    expect(queue.size()).toBe(1);
   });
 
-  test('enqueue', () => {
-    const q = new Queue();
-    q.enqueue(100);
-    expect(q.length).toBe(1);
-    q.enqueue(200);
-    expect(q.length).toBe(2);
+  test('dequeue should remove and return the first item', () => {
+    queue.enqueue(1);
+    queue.enqueue(2);
+    const item = queue.dequeue();
+    expect(item).toBe(1);
+    expect(queue.size()).toBe(1);
   });
 
-  test('dequeue', () => {
-    const q = new Queue();
-    q.enqueue(100);
-    expect(q.length).toBe(1);
-    q.enqueue(200);
-    expect(q.length).toBe(2);
-    expect(q.dequeue()).toBe(100);
-    expect(q.length).toBe(1);
-    expect(q.dequeue()).toBe(200);
-    expect(q.length).toBe(0);
-    expect(q.dequeue()).toBe(undefined);
+  test('peek should return the first item without removing it', () => {
+    queue.enqueue(1);
+    queue.enqueue(2);
+    const item = queue.peek();
+    expect(item).toBe(1);
+    expect(queue.size()).toBe(2);
   });
 
-  test('length', () => {
-    const q = new Queue();
-    q.enqueue(100);
-    expect(q.length).toBe(1);
-    q.enqueue(200);
-    expect(q.length).toBe(2);
-    q.dequeue();
-    expect(q.length).toBe(1);
-    q.enqueue(300);
-    expect(q.length).toBe(2);
+  test('isEmpty should return true for a new queue', () => {
+    expect(queue.isEmpty()).toBeTruthy();
   });
 
-  test('front', () => {
-    const q = new Queue();
-    q.enqueue(100);
-    expect(q.front()).toBe(100);
-    q.enqueue(200);
-    expect(q.front()).toBe(100);
-    q.dequeue();
-    expect(q.front()).toBe(200);
-    q.enqueue(300);
-    expect(q.front()).toBe(200);
-    q.dequeue();
-    q.dequeue();
-    expect(q.front()).toBe(undefined);
+  test('isEmpty should return false for a queue with items', () => {
+    queue.enqueue(1);
+    expect(queue.isEmpty()).toBeFalsy();
   });
 
-  test('back', () => {
-    const q = new Queue();
-    q.enqueue(100);
-    expect(q.back()).toBe(100);
-    q.enqueue(200);
-    expect(q.back()).toBe(200);
-    q.dequeue();
-    expect(q.back()).toBe(200);
-    q.enqueue(300);
-    expect(q.back()).toBe(300);
-    q.dequeue();
-    q.dequeue();
-    expect(q.back()).toBe(undefined);
+  test('isFull should return false for a new queue', () => {
+    expect(queue.isFull()).toBeFalsy();
   });
 
-  test('integration', () => {
-    const q = new Queue();
-    q.enqueue(100);
-    expect(q.length).toBe(1);
-    expect(q.dequeue()).toBe(100);
-    expect(q.length).toBe(0);
-    q.enqueue(200);
-    expect(q.length).toBe(1);
-    expect(q.dequeue()).toBe(200);
+  test('isFull should return true for a queue that has reached capacity', () => {
+    const limitedQueue = new Queue<number>(1);
+    limitedQueue.enqueue(1);
+    expect(limitedQueue.isFull()).toBeTruthy();
+  });
+
+  test('dequeue should return undefined when called on an empty queue', () => {
+    const item = queue.dequeue();
+    expect(item).toBeUndefined();
+  });
+
+  test('enqueue should throw an error when trying to add items beyond capacity', () => {
+    const limitedQueue = new Queue<number>(1);
+    limitedQueue.enqueue(1);
+    expect(() => {
+      limitedQueue.enqueue(2);
+    }).toThrow('Queue is full');
+  });
+
+  test('clear should remove all items from the queue', () => {
+    queue.enqueue(1);
+    queue.enqueue(2);
+    queue.clear();
+    expect(queue.size()).toBe(0);
+    expect(queue.isEmpty()).toBeTruthy();
+  });
+
+  test('enqueue performance for 10000 items', () => {
+    const start = performance.now();
+    for (let i = 0; i < 10000; i++) {
+      queue.enqueue(i);
+    }
+    const end = performance.now();
+    console.log(`Time taken to enqueue 10000 items: ${end - start}ms`);
+    expect(end - start).toBeLessThan(100);
+  });
+
+  test('dequeue performance for 10000 items', () => {
+    for (let i = 0; i < 10000; i++) {
+      queue.enqueue(i);
+    }
+
+    const start = performance.now();
+    while (!queue.isEmpty()) {
+      queue.dequeue();
+    }
+    const end = performance.now();
+    console.log(`Time taken to dequeue 10000 items: ${end - start}ms`);
+    expect(end - start).toBeLessThan(100);
   });
 });
