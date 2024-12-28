@@ -10,7 +10,7 @@ export class BinaryTree<T> {
    * Inserts a new value into the binary search tree.
    * @param {T} value The value to insert.
    */
-  insert(value: T) {
+  insert(value: T): void {
     const newNode = new BinaryTreeNode(value);
     if (this.root === null) {
       this.root = newNode;
@@ -19,7 +19,10 @@ export class BinaryTree<T> {
     }
   }
 
-  private insertNode(node: BinaryTreeNode<T>, newNode: BinaryTreeNode<T>) {
+  private insertNode(
+    node: BinaryTreeNode<T>,
+    newNode: BinaryTreeNode<T>
+  ): void {
     if (newNode.value < node.value) {
       if (node.left === null) {
         node.left = newNode;
@@ -65,8 +68,8 @@ export class BinaryTree<T> {
    * Traverses the binary search tree in order (left, root, right).
    * @param {function} visit Function to call on each value.
    */
-  inOrderTraverse(visit: (value: T) => void) {
-    function traverse(node: BinaryTreeNode<T> | null) {
+  inOrderTraverse(visit: (value: T) => void): void {
+    function traverse(node: BinaryTreeNode<T> | null): void {
       if (node === null) return;
       traverse(node.left);
       visit(node.value);
@@ -79,7 +82,7 @@ export class BinaryTree<T> {
    * Removes a value from the binary search tree.
    * @param {T} value The value to remove.
    */
-  remove(value: T) {
+  remove(value: T): void {
     this.root = this.removeNode(this.root, value);
   }
 

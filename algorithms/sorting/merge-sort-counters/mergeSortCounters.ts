@@ -7,7 +7,7 @@ let countOuter = 0;
 let countInner = 0;
 let countSwap = 0;
 
-function resetCounters() {
+function resetCounters(): void {
   countOuter = 0;
   countInner = 0;
   countSwap = 0;
