@@ -11,11 +11,11 @@ export function jumpSearch(arr: number[], x: number): number | undefined {
   }
   while (arr[prev] < x) {
     prev++;
-    if (prev == Math.min(step, n)) {
+    if (prev === Math.min(step, n)) {
       return undefined;
     }
   }
-  if (arr[prev] == x) {
+  if (arr[prev] === x) {
     return prev;
   }
   return undefined;
