@@ -13,18 +13,19 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [20]
+        node: [22]
     timeout-minutes: 300
     steps:
       - name: checkout pushed commit
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-      - name: run lint and test
-        uses: actions/setup-node@v1
+      - name: setup node
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-      - run: yarn install
-      - run: yarn typecheck
-      - run: yarn lint
-      - run: yarn test
+      - run: |
+          yarn install
+          yarn typecheck
+          yarn lint
+          yarn test
