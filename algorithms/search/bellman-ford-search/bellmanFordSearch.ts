@@ -15,11 +15,7 @@ export class BellmanFord {
    * @returns {number[] | null} - An array of shortest distances to each vertex from the source, or `null` if a negative weight cycle exists.
    * @throws {Error} If the input parameters are invalid.
    */
-  static findShortestPaths(
-    vertices: number,
-    edges: Edge[],
-    source: number
-  ): number[] | null {
+  static findShortestPaths(vertices: number, edges: Edge[], source: number): number[] | null {
     // Validate input
     this.validateInput(vertices, edges, source);
 
@@ -62,7 +58,7 @@ export class BellmanFord {
     vertices: number,
     edges: Edge[],
     source: number,
-    target: number
+    target: number,
   ): number[] | null {
     // Validate input
     this.validateInput(vertices, edges, source);
@@ -131,11 +127,7 @@ export class BellmanFord {
    * @param {number} source - The starting vertex.
    * @throws {Error} If the input parameters are invalid.
    */
-  private static validateInput(
-    vertices: number,
-    edges: Edge[],
-    source: number
-  ): void {
+  private static validateInput(vertices: number, edges: Edge[], source: number): void {
     if (vertices <= 0) {
       throw new Error('Number of vertices must be positive');
     }

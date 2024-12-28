@@ -43,10 +43,7 @@ export class RedBlackTree<T> {
    * Initializes an empty Red-Black Tree.
    * @param {(a: T, b: T) => number} [compare] - A custom comparator function. Default: numerical comparison.
    */
-  constructor(
-    private compare: (a: T, b: T) => number = (a, b) =>
-      a < b ? -1 : a > b ? 1 : 0
-  ) {
+  constructor(private compare: (a: T, b: T) => number = (a, b) => (a < b ? -1 : a > b ? 1 : 0)) {
     this.nil = new Node<T>(null as T, null!);
     this.nil.color = Color.BLACK;
     this.nil.left = this.nil.right = this.nil;

@@ -19,10 +19,7 @@ export class BinaryTree<T> {
     }
   }
 
-  private insertNode(
-    node: BinaryTreeNode<T>,
-    newNode: BinaryTreeNode<T>
-  ): void {
+  private insertNode(node: BinaryTreeNode<T>, newNode: BinaryTreeNode<T>): void {
     if (newNode.value < node.value) {
       if (node.left === null) {
         node.left = newNode;
@@ -47,10 +44,7 @@ export class BinaryTree<T> {
     return this.search(this.root, value) !== null;
   }
 
-  private search(
-    node: BinaryTreeNode<T> | null,
-    value: T
-  ): BinaryTreeNode<T> | null {
+  private search(node: BinaryTreeNode<T> | null, value: T): BinaryTreeNode<T> | null {
     if (node === null) {
       return null;
     }
@@ -86,10 +80,7 @@ export class BinaryTree<T> {
     this.root = this.removeNode(this.root, value);
   }
 
-  private removeNode(
-    node: BinaryTreeNode<T> | null,
-    value: T
-  ): BinaryTreeNode<T> | null {
+  private removeNode(node: BinaryTreeNode<T> | null, value: T): BinaryTreeNode<T> | null {
     if (node === null) {
       return null;
     }

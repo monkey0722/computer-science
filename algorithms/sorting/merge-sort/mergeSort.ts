@@ -23,10 +23,7 @@ export function mergeSortTopDown(items: number[]): number[] {
   const leftItems = items.slice(0, middle);
   const rightItems = items.slice(middle);
 
-  return mergeTopDown(
-    mergeSortTopDown(leftItems),
-    mergeSortTopDown(rightItems)
-  );
+  return mergeTopDown(mergeSortTopDown(leftItems), mergeSortTopDown(rightItems));
 }
 
 /**
@@ -41,10 +38,7 @@ function mergeBottomUp(items: number[], left: number, step: number): void {
   let moveRight = right;
 
   for (let i = left; i <= last; i++) {
-    if (
-      (items[moveLeft] <= items[moveRight] || moveRight > last) &&
-      moveLeft < right
-    ) {
+    if ((items[moveLeft] <= items[moveRight] || moveRight > last) && moveLeft < right) {
       tmp[i] = items[moveLeft];
       moveLeft++;
     } else {

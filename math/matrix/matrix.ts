@@ -18,9 +18,7 @@ export class Matrix {
     if (rows <= 0 || cols <= 0) {
       throw new Error(`Invalid matrix size: ${rows} x ${cols}`);
     }
-    this.data = Array.from({length: rows}, () =>
-      Array(cols).fill(initialValue)
-    );
+    this.data = Array.from({length: rows}, () => Array(cols).fill(initialValue));
   }
 
   /**
@@ -173,9 +171,7 @@ export class Matrix {
 
     // 2x2
     if (this.rows === 2) {
-      return (
-        this.data[0][0] * this.data[1][1] - this.data[0][1] * this.data[1][0]
-      );
+      return this.data[0][0] * this.data[1][1] - this.data[0][1] * this.data[1][0];
     }
 
     // n x n (n >= 3)

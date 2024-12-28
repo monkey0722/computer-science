@@ -42,7 +42,7 @@ export function mergeSortCountersTopDown(items: number[]): number[] {
 
   return mergeCountersTopDown(
     mergeSortCountersTopDown(leftItems),
-    mergeSortCountersTopDown(rightItems)
+    mergeSortCountersTopDown(rightItems),
   );
 }
 
@@ -76,11 +76,7 @@ function mergeSortCountersBottomUp(items: number[]): number[] {
   return items;
 }
 
-function mergeCountersBottomUp(
-  items: number[],
-  left: number,
-  step: number
-): void {
+function mergeCountersBottomUp(items: number[], left: number, step: number): void {
   const tmp: number[] = [];
   const right: number = left + step;
   const last: number = Math.min(left + step * 2 - 1, items.length - 1);
@@ -89,10 +85,7 @@ function mergeCountersBottomUp(
   let moveRight: number = right;
 
   for (let i = left; i <= last; i++) {
-    if (
-      (items[moveLeft] <= items[moveRight] || moveRight > last) &&
-      moveLeft < right
-    ) {
+    if ((items[moveLeft] <= items[moveRight] || moveRight > last) && moveLeft < right) {
       tmp[i] = items[moveLeft];
       moveLeft++;
     } else {

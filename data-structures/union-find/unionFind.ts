@@ -61,9 +61,7 @@ export class UnionFind<T> {
    */
   union(element1: T, element2: T): void {
     if (!this.parent.has(element1) || !this.parent.has(element2)) {
-      throw new Error(
-        `One or both elements (${element1}, ${element2}) not found in any set`
-      );
+      throw new Error(`One or both elements (${element1}, ${element2}) not found in any set`);
     }
 
     const root1 = this.find(element1);

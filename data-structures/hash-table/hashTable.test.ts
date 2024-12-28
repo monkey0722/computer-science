@@ -80,8 +80,6 @@ describe('HashTable with large data set', () => {
       hashTable.set(i, i);
     }
     const endTime = performance.now();
-    console.log(
-      `Inserting ${largeSize} items took ${endTime - startTime} milliseconds`
-    );
+    console.log(`Inserting ${largeSize} items took ${endTime - startTime} milliseconds`);
   });
 });

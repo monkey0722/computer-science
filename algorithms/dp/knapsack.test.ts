@@ -52,7 +52,7 @@ describe('Knapsack', () => {
       ];
       const capacity = 5;
       expect(() => Knapsack.solve(items, capacity)).toThrowError(
-        'Item weights and values must be non-negative'
+        'Item weights and values must be non-negative',
       );
     });
   });
@@ -95,7 +95,7 @@ describe('Knapsack', () => {
       ];
       const capacity = 15;
       expect(() => Knapsack.solveFractional(items, capacity)).toThrowError(
-        'Item weights and values must be non-negative'
+        'Item weights and values must be non-negative',
       );
     });
   });
