@@ -25,7 +25,6 @@ export class MinHeap<T> {
    * @param {number} parentIndex The index of the parent node.
    * @return {number} The index of the right child.
    */
-  priva;
   private getRightChildIndex(parentIndex: number): number {
     return 2 * parentIndex + 2;
   }
