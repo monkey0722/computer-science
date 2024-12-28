@@ -13,7 +13,7 @@ export class Knapsack {
    */
   static solve(
     items: Item[],
-    capacity: number
+    capacity: number,
   ): {
     maxValue: number;
     selectedItems: boolean[];
@@ -28,19 +28,14 @@ export class Knapsack {
     }
 
     const n = items.length;
-    const dp: number[][] = Array.from({length: n + 1}, () =>
-      Array(capacity + 1).fill(0)
-    );
+    const dp: number[][] = Array.from({length: n + 1}, () => Array(capacity + 1).fill(0));
 
     // Build the DP table
     for (let i = 1; i <= n; i++) {
       const item = items[i - 1];
       for (let w = 0; w <= capacity; w++) {
         if (item.weight <= w) {
-          dp[i][w] = Math.max(
-            dp[i - 1][w],
-            dp[i - 1][w - item.weight] + item.value
-          );
+          dp[i][w] = Math.max(dp[i - 1][w], dp[i - 1][w - item.weight] + item.value);
         } else {
           dp[i][w] = dp[i - 1][w];
         }
@@ -72,7 +67,7 @@ export class Knapsack {
    */
   static solveFractional(
     items: Item[],
-    capacity: number
+    capacity: number,
   ): {
     maxValue: number;
     fractions: number[];

@@ -35,13 +35,13 @@ describe('BellmanFord', () => {
       {source: 1, target: 2, weight: 3},
     ];
     expect(() => BellmanFord.findShortestPaths(0, edges, 0)).toThrowError(
-      'Number of vertices must be positive'
+      'Number of vertices must be positive',
     );
   });
   test('should throw error for invalid edge vertices', () => {
     const edges = [{source: 0, target: 5, weight: 4}];
     expect(() => BellmanFord.findShortestPaths(4, edges, 0)).toThrowError(
-      'Edge contains an invalid vertex'
+      'Edge contains an invalid vertex',
     );
   });
   test('should handle large graph with no negative weight cycles', () => {

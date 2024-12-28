@@ -28,9 +28,7 @@ describe('Trie', () => {
     trie.insert('app');
     trie.insert('application');
     trie.insert('banana');
-    expect(trie.findWords('app').sort()).toEqual(
-      ['app', 'apple', 'application'].sort()
-    );
+    expect(trie.findWords('app').sort()).toEqual(['app', 'apple', 'application'].sort());
     expect(trie.findWords('ban')).toEqual(['banana']);
     expect(trie.findWords('cat')).toEqual([]);
   });

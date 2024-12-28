@@ -25,7 +25,6 @@ export class MinHeap<T> {
    * @param {number} parentIndex The index of the parent node.
    * @return {number} The index of the right child.
    */
-  priva;
   private getRightChildIndex(parentIndex: number): number {
     return 2 * parentIndex + 2;
   }
@@ -45,10 +44,7 @@ export class MinHeap<T> {
    * @param {number} index2 The index of the second element.
    */
   private swap(index1: number, index2: number): void {
-    [this.heap[index1], this.heap[index2]] = [
-      this.heap[index2],
-      this.heap[index1],
-    ];
+    [this.heap[index1], this.heap[index2]] = [this.heap[index2], this.heap[index1]];
   }
 
   /**
@@ -58,8 +54,7 @@ export class MinHeap<T> {
     let index = this.heap.length - 1;
     while (
       index > 0 &&
-      this.compareFn(this.heap[this.getParentIndex(index)], this.heap[index]) >
-        0
+      this.compareFn(this.heap[this.getParentIndex(index)], this.heap[index]) > 0
     ) {
       const parentIndex = this.getParentIndex(index);
       this.swap(index, parentIndex);
@@ -81,10 +76,7 @@ export class MinHeap<T> {
       const rightChildIndex = this.getRightChildIndex(index);
       if (
         rightChildIndex < this.heap.length &&
-        this.compareFn(
-          this.heap[rightChildIndex],
-          this.heap[smallerChildIndex]
-        ) < 0
+        this.compareFn(this.heap[rightChildIndex], this.heap[smallerChildIndex]) < 0
       ) {
         smallerChildIndex = rightChildIndex;
       }

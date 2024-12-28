@@ -14,8 +14,6 @@ describe('sieveOfEratosthenes', () => {
     expect(sieveOfEratosthenes(20)).toEqual([2, 3, 5, 7, 11, 13, 17, 19]);
   });
   test('should return an array containing 2, 3, 5, 7, 11, 13, 17, 19, 23, and 29 when passed 30', () => {
-    expect(sieveOfEratosthenes(30)).toEqual([
-      2, 3, 5, 7, 11, 13, 17, 19, 23, 29,
-    ]);
+    expect(sieveOfEratosthenes(30)).toEqual([2, 3, 5, 7, 11, 13, 17, 19, 23, 29]);
   });
 });

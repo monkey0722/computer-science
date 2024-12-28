@@ -1,17 +1,21 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "ES2015",
-    "lib": ["es6", "dom"],
+    "module": "NodeNext",
+    "target": "ES2023",
+    "lib": ["ES2023", "DOM"],
     "sourceMap": true,
     "allowJs": true,
-    "moduleResolution": "node",
+    "moduleResolution": "NodeNext",
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strictNullChecks": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
       "~": ["/"]
@@ -26,6 +30,7 @@
     "node_modules"
   ],
   "types": [
+    "node",
     "typePatches"
   ]
 }
