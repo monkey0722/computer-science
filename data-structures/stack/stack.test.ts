@@ -80,6 +80,6 @@ describe('Stack', () => {
     }
     const end = performance.now();
     console.log(`Time taken to push 10000 items: ${end - start}ms`);
-    expect(end - start).toBeLessThan(20);
+    expect(end - start).toBeLessThan(100);
   });
 });

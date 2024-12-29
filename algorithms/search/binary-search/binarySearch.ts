@@ -5,8 +5,7 @@
  * @typeParam T - The type of elements in the array.
  * @param arr - A sorted array in which to perform the search.
  * @param value - The value to search for.
- * @param comparator - Optional comparison function. If not provided, the function attempts
- *                     to compare elements using the built-in `<` and `>` operators.
+ * @param comparator - Optional comparison function. If not provided, the function attempts to compare elements using the built-in `<` and `>` operators.
  * @returns The index of the found element, or `undefined` if the element is not found.
  */
 export function binarySearch<T>(

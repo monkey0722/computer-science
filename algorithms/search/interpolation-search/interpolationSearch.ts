@@ -7,8 +7,8 @@
  * @returns The index of the found value, or `undefined` if not found.
  *
  * @remarks
- * Interpolation search is generally faster than a standard binary search for uniformly
- * distributed data, but can degrade to O(n) in the worst case.
+ ** Interpolation search is generally faster than a standard binary search for uniformly
+ ** distributed data, but can degrade to O(n) in the worst case.
  */
 export function interpolationSearch(arr: number[], key: number): number | undefined {
   if (arr.length === 0) return undefined;

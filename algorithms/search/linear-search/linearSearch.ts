@@ -5,8 +5,7 @@
  * @typeParam T - The type of elements in the array.
  * @param arr - The array in which to search.
  * @param value - The value to search for.
- * @param comparator - An optional comparison function. If not provided, the function
- *                     compares using `===`.
+ * @param comparator - An optional comparison function. If not provided, the function compares using `===`.
  * @returns The index of the found element or `undefined` if not found.
  */
 export function linearSearch<T>(

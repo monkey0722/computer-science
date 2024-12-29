@@ -1,82 +1,142 @@
-// sample of arrays to merge-sort-counters
-const randomArray = [9, 2, 5, 6, 4, 3, 7, 10, 1, 8];
-const orderedArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const reversedArray = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
-
-let countOuter = 0;
-let countInner = 0;
-let countSwap = 0;
-
-function resetCounters(): void {
-  countOuter = 0;
-  countInner = 0;
-  countSwap = 0;
+/**
+ * An object to track the number of outer calls, inner comparisons, and "swaps" (or writes).
+ */
+export interface MergeSortCounters {
+  countOuter: number;
+  countInner: number;
+  countSwap: number;
 }
 
 /**
- * Top-down implementation
+ * Merges two sorted arrays (Top-down approach) while incrementing counters.
+ *
+ * @param left - A sorted array of numbers.
+ * @param right - A sorted array of numbers.
+ * @param counters - An object to track outer, inner, and swap counts.
+ * @returns A new sorted array containing elements from left and right.
+ *
+ * @remarks
+ ** `countInner` is incremented every time we compare the first elements of left and right.
+ ** There is no actual "swap" in top-down mergesort, so `countSwap` might remain 0 if you are counting swaps strictly. If you want to count element copies, you can increment here.
  */
-function mergeCountersTopDown(left: number[], right: number[]): number[] {
+function mergeCountersTopDown(
+  left: number[],
+  right: number[],
+  counters: MergeSortCounters,
+): number[] {
   const array: number[] = [];
-  let nonFirst: number | undefined;
 
   while (left.length && right.length) {
-    countInner++;
-    left[0] < right[0] ? (nonFirst = left.shift()) : (nonFirst = right.shift());
-    if (nonFirst) {
-      array.push(nonFirst);
+    // Each comparison increments countInner
+    counters.countInner++;
+    if (left[0] < right[0]) {
+      array.push(left.shift()!);
+    } else {
+      array.push(right.shift()!);
     }
+    // If you want to count element "copies" to the merged array, increment here:
+    // counters.countSwap++;
   }
-  return array.concat(left.slice()).concat(right.slice());
+  return array.concat(left, right);
 }
 
-export function mergeSortCountersTopDown(items: number[]): number[] {
-  countOuter++;
+/**
+ * Recursively sorts an array using the top-down merge sort approach,
+ * while tracking the number of outer calls, inner comparisons, and swaps.
+ *
+ * @param items - The array of numbers to sort.
+ * @param counters - An optional counters object. If not provided, a new one will be created.
+ * @returns A new sorted array of numbers.
+ *
+ * @remarks
+ ** This function does NOT modify the original array (non-destructive).
+ ** countOuter` is incremented for each call to mergeSortCountersTopDown.
+ */
+export function mergeSortCountersTopDown(
+  items: number[],
+  counters?: MergeSortCounters,
+): {sortedArray: number[]; counters: MergeSortCounters} {
+  // If counters not provided, initialize a new one
+  const localCounters = counters ?? {
+    countOuter: 0,
+    countInner: 0,
+    countSwap: 0,
+  };
+
+  localCounters.countOuter++;
+
   if (items.length < 2) {
-    return items;
+    return {sortedArray: items, counters: localCounters};
   }
 
   const middle: number = Math.floor(items.length / 2);
   const leftItems: number[] = items.slice(0, middle);
   const rightItems: number[] = items.slice(middle);
 
-  return mergeCountersTopDown(
-    mergeSortCountersTopDown(leftItems),
-    mergeSortCountersTopDown(rightItems),
+  const leftResult = mergeSortCountersTopDown(leftItems, localCounters);
+  const rightResult = mergeSortCountersTopDown(rightItems, localCounters);
+
+  const merged = mergeCountersTopDown(
+    leftResult.sortedArray,
+    rightResult.sortedArray,
+    localCounters,
   );
+  return {sortedArray: merged, counters: localCounters};
 }
 
-mergeSortCountersTopDown(randomArray.slice()); // => outer: 19 inner: 24 swap: 0
-console.log('outer:', countOuter, 'inner:', countInner, 'swap:', countSwap);
-resetCounters();
-
-mergeSortCountersTopDown(orderedArray.slice()); // => outer: 19 inner: 15 swap: 0
-console.log('outer:', countOuter, 'inner:', countInner, 'swap:', countSwap);
-resetCounters();
-
-mergeSortCountersTopDown(reversedArray.slice()); // => outer: 19 inner: 19 swap: 0
-console.log('outer:', countOuter, 'inner:', countInner, 'swap:', countSwap);
-resetCounters();
-
 /**
- * Bottom-up implementation
+ * Iteratively sorts an array using the bottom-up merge sort approach,
+ * while tracking counters.
+ *
+ * @param items - The array of numbers to sort. (in-place sort)
+ * @param counters - An optional counters object. If not provided, a new one will be created.
+ * @returns The same array (sorted), plus the updated counters.
+ *
+ * @remarks
+ ** This function modifies the original array in-place.
+ ** `countOuter` is incremented each time we increase the merge step.
+ ** `countInner` is incremented each time we merge a subarray.
+ ** `countSwap` is incremented each time we write back into the items array.
  */
-function mergeSortCountersBottomUp(items: number[]): number[] {
+export function mergeSortCountersBottomUp(
+  items: number[],
+  counters?: MergeSortCounters,
+): {sortedArray: number[]; counters: MergeSortCounters} {
+  const localCounters = counters ?? {
+    countOuter: 0,
+    countInner: 0,
+    countSwap: 0,
+  };
+
   let step = 1;
   while (step < items.length) {
-    countOuter++;
+    localCounters.countOuter++;
     let left = 0;
     while (left + step < items.length) {
-      countInner++;
-      mergeCountersBottomUp(items, left, step);
+      localCounters.countInner++;
+
+      mergeCountersBottomUp(items, left, step, localCounters);
       left += step * 2;
     }
     step *= 2;
   }
-  return items;
+  return {sortedArray: items, counters: localCounters};
 }
 
-function mergeCountersBottomUp(items: number[], left: number, step: number): void {
+/**
+ * Merges two subarrays in-place for the bottom-up approach, incrementing swap counts.
+ *
+ * @param items - The array to modify in place.
+ * @param left - The start index of the left subarray.
+ * @param step - The size of the subarray to merge.
+ * @param counters - The counters to update.
+ */
+function mergeCountersBottomUp(
+  items: number[],
+  left: number,
+  step: number,
+  counters: MergeSortCounters,
+): void {
   const tmp: number[] = [];
   const right: number = left + step;
   const last: number = Math.min(left + step * 2 - 1, items.length - 1);
@@ -93,21 +153,8 @@ function mergeCountersBottomUp(items: number[], left: number, step: number): voi
       moveRight++;
     }
   }
-
   for (let j = left; j <= last; j++) {
-    countSwap++;
+    counters.countSwap++; // we are overwriting items[j] with tmp[j]
     items[j] = tmp[j];
   }
 }
-
-mergeSortCountersBottomUp(randomArray.slice()); // => outer: 4 inner: 9 swap: 36
-console.log('outer:', countOuter, 'inner:', countInner, 'swap:', countSwap);
-resetCounters();
-
-mergeSortCountersBottomUp(orderedArray.slice()); // => outer: 4 inner: 9 swap: 36
-console.log('outer:', countOuter, 'inner:', countInner, 'swap:', countSwap);
-resetCounters();
-
-mergeSortCountersBottomUp(reversedArray.slice()); // => outer: 4 inner: 9 swap: 36
-console.log('outer:', countOuter, 'inner:', countInner, 'swap:', countSwap);
-resetCounters();

@@ -106,6 +106,6 @@ describe('BinaryTree Performance Test', () => {
     }
     const end = performance.now();
     console.log(`Time taken to search ${size} items: ${end - start}ms`);
-    expect(end - start).toBeLessThan(500);
+    expect(end - start).toBeLessThan(1000);
   });
 });

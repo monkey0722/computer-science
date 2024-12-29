@@ -7,8 +7,8 @@
  * @returns The index of the found value, or `undefined` if the value is not found.
  *
  * @remarks
- * Jump search is an algorithm that allows searching in O(√n) time by jumping in fixed-size steps,
- * then doing a linear search within the block where the value could exist.
+ ** Jump search is an algorithm that allows searching in O(√n) time by jumping in fixed-size steps,
+ ** then doing a linear search within the block where the value could exist.
  */
 export function jumpSearch(arr: number[], x: number): number | undefined {
   const n = arr.length;
