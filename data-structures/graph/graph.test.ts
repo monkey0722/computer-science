@@ -10,20 +10,17 @@ describe('Graph', () => {
   test('A new graph should be empty', () => {
     expect(graph.size).toBe(0);
   });
-
   test('Adding nodes increases graph size', () => {
     graph.addNode('A');
     expect(graph.size).toBe(1);
     graph.addNode('B');
     expect(graph.size).toBe(2);
   });
-
   test('Adding edges does not increase graph size', () => {
     graph.addNode('A').addNode('B');
     graph.addEdge('A', 'B', 1);
     expect(graph.size).toBe(2);
   });
-
   test('Can remove nodes and edges', () => {
     graph.addNode('A').addNode('B');
     graph.addEdge('A', 'B', 1);
@@ -32,12 +29,10 @@ describe('Graph', () => {
     graph.removeNode('A');
     expect(graph.size).toBe(1);
   });
-
   test('Correctly retrieves edge weights', () => {
     graph.addNode('A').addNode('B').addEdge('A', 'B', 1);
     expect(graph.getEdgeWeight('A', 'B')).toBe(1);
   });
-
   test('Correctly identifies adjacent nodes', () => {
     graph.addNode('A').addNode('B').addEdge('A', 'B', 1);
     expect(graph.isAdjacent('A', 'B')).toBe(true);
@@ -61,7 +56,6 @@ describe('Graph Performance', () => {
     const end = performance.now();
     expect(end - start).toBeLessThan(500);
   });
-
   test('Performance for adding 10,000 edges', () => {
     for (let i = 0; i < 10000; i++) {
       graph.addNode(i);

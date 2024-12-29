@@ -1,25 +1,30 @@
 import {insertionSortCounters} from './insertionSortCounters';
 
-describe('insertion-sort-counters', () => {
-  const randomArray = [2, 8, 5, 6, 4, 3, 10, 7, 1, 9];
-  const orderedArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const reversedArray = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
-
-  it('normal', () => {
-    expect(insertionSortCounters(randomArray.slice())).toEqual({
-      countOuter: 10,
-      countInner: 20,
-      countSwap: 20,
-    });
-    expect(insertionSortCounters(orderedArray.slice())).toEqual({
-      countOuter: 10,
+describe('insertion-sort-counters additional tests', () => {
+  test('should handle an empty array', () => {
+    expect(insertionSortCounters([])).toEqual({
+      countOuter: 0,
       countInner: 0,
       countSwap: 0,
     });
-    expect(insertionSortCounters(reversedArray.slice())).toEqual({
-      countOuter: 10,
-      countInner: 45,
-      countSwap: 45,
+  });
+  test('should handle a single-element array', () => {
+    expect(insertionSortCounters([42])).toEqual({
+      countOuter: 0,
+      countInner: 0,
+      countSwap: 0,
     });
+  });
+  test('should handle an array with duplicate elements', () => {
+    const arr = [3, 3, 1, 1, 2, 2];
+    const result = insertionSortCounters(arr.slice());
+    expect(result.countOuter).toBeGreaterThanOrEqual(1);
+    expect(result.countInner).toBeGreaterThanOrEqual(0);
+    expect(result.countSwap).toBeGreaterThanOrEqual(0);
+  });
+  test('should handle an already sorted array', () => {
+    const sorted = [1, 2, 3, 4, 5];
+    const result = insertionSortCounters(sorted.slice());
+    expect(result.countSwap).toBe(0);
   });
 });

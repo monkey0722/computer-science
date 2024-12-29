@@ -6,6 +6,7 @@
 export class HashTable<K, V> {
   private table: Array<{key: K; value: V}[]>;
   private size: number;
+  private loadFactorThreshold = 0.75;
 
   /**
    * Constructs a hash table.
@@ -23,14 +24,30 @@ export class HashTable<K, V> {
    */
   private hash(key: K): number {
     let hashValue = 0;
-    const stringTypeKey = `${key}`;
-
-    for (let i = 0; i < stringTypeKey.length; i++) {
-      const charCode = stringTypeKey.charCodeAt(i);
-      hashValue += charCode << (i * 8);
+    const stringKey = `${key}`;
+    for (let i = 0; i < stringKey.length; i++) {
+      hashValue = (hashValue << 5) + hashValue + stringKey.charCodeAt(i);
     }
+    return Math.abs(hashValue) % this.table.length;
+  }
 
-    return hashValue % this.table.length;
+  /**
+   * Resizes the table when the load factor exceeds loadFactorThreshold.
+   */
+  private resize(): void {
+    const newSize = this.table.length * 2;
+    const oldTable = this.table;
+
+    this.table = new Array(newSize);
+    this.size = 0;
+
+    for (const bucket of oldTable) {
+      if (bucket) {
+        for (const item of bucket) {
+          this.set(item.key, item.value);
+        }
+      }
+    }
   }
 
   /**
@@ -52,6 +69,11 @@ export class HashTable<K, V> {
     bucket.push({key, value});
     this.table[index] = bucket;
     this.size++;
+
+    // After insertion, check the load factor and resize if necessary.
+    if (this.size / this.table.length > this.loadFactorThreshold) {
+      this.resize();
+    }
   }
 
   /**
@@ -72,7 +94,6 @@ export class HashTable<K, V> {
         return item.value;
       }
     }
-
     return undefined;
   }
 
@@ -96,7 +117,6 @@ export class HashTable<K, V> {
         return true;
       }
     }
-
     return false;
   }
 

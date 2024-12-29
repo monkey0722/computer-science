@@ -1,4 +1,19 @@
-import {ListNode} from './listNode';
+/**
+ * Class representing a single node in a linked list.
+ * @template T - The type of the value.
+ */
+class ListNode<T> {
+  public value: T;
+  public next: ListNode<T> | null = null;
+
+  /**
+   * Creates a list node.
+   * @param {T} value - The value stored in the node.
+   */
+  constructor(value: T) {
+    this.value = value;
+  }
+}
 
 /**
  * Class representing a singly linked list.
@@ -61,23 +76,28 @@ export class LinkedList<T> {
    */
   delete(value: T): void {
     if (!this.head) return;
-
+    // If the head is the target for deletion,
     if (this.head.value === value) {
-      this.head = this.head.next;
       if (this.head === this.tail) {
+        this.head = null;
         this.tail = null;
+        this._length--;
+        return;
+      } else {
+        // Delete the head and make the second one the new head.
+        this.head = this.head.next;
+        this._length--;
+        return;
       }
-      this._length--;
-      return;
     }
-
+    // Other than the first.
     let currentNode = this.head;
     while (currentNode.next) {
       if (currentNode.next.value === value) {
-        currentNode.next = currentNode.next.next;
-        if (currentNode.next === null) {
+        if (currentNode.next === this.tail) {
           this.tail = currentNode;
         }
+        currentNode.next = currentNode.next.next;
         this._length--;
         return;
       }
@@ -91,16 +111,13 @@ export class LinkedList<T> {
    * @return {ListNode<T> | null} The found node or null if not found.
    */
   find(value: T): ListNode<T> | null {
-    if (!this.head) return null;
-
-    let currentNode: ListNode<T> | null = this.head;
+    let currentNode = this.head;
     while (currentNode) {
       if (currentNode.value === value) {
         return currentNode;
       }
       currentNode = currentNode.next;
     }
-
     return null;
   }
 
