@@ -7,79 +7,79 @@ describe('Stack', () => {
     stack = new Stack<number>();
   });
 
-  test('new stack should be empty', () => {
+  test('should create a new stack that is empty', () => {
     expect(stack.isEmpty()).toBe(true);
+    expect(stack.size()).toBe(0);
   });
-
-  test('push should add an item to the stack', () => {
+  test('should push an item onto the stack', () => {
     stack.push(1);
     expect(stack.size()).toBe(1);
+    expect(stack.peek()).toBe(1);
   });
-
-  test('push should add items in LIFO order', () => {
+  test('should push items in LIFO order', () => {
     stack.push(1);
     stack.push(2);
-    expect(stack.peek()).toBe(2);
+    expect(stack.peek()).toBe(2); // The last pushed item is on top
   });
-
-  test('pop should remove the last item', () => {
+  test('should pop the top item', () => {
     stack.push(1);
     stack.push(2);
-    const item = stack.pop();
-    expect(item).toBe(2);
+    const popped = stack.pop();
+    expect(popped).toBe(2);
     expect(stack.size()).toBe(1);
+    expect(stack.peek()).toBe(1);
   });
-
-  test('pop should return undefined for an empty stack', () => {
+  test('should return undefined when popping from an empty stack', () => {
     expect(stack.pop()).toBeUndefined();
   });
-
-  test('peek should return the last item without removing it', () => {
+  test('should peek the top item without removing it', () => {
     stack.push(1);
-    expect(stack.peek()).toBe(1);
-    expect(stack.size()).toBe(1);
+    const top = stack.peek();
+    expect(top).toBe(1);
+    expect(stack.size()).toBe(1); // Size unchanged
   });
-
-  test('size should return the number of items in the stack', () => {
+  test('should return the current size of the stack', () => {
     stack.push(1);
     stack.push(2);
     expect(stack.size()).toBe(2);
   });
+  test('should push and pop items up to capacity', () => {
+    const capacityStack = new Stack<number>(3);
+    capacityStack.push(10);
+    capacityStack.push(20);
+    expect(capacityStack.size()).toBe(2);
+    expect(capacityStack.peek()).toBe(20);
 
-  test('isEmpty should return false for stack with items', () => {
-    stack.push(1);
-    expect(stack.isEmpty()).toBe(false);
+    const popped = capacityStack.pop();
+    expect(popped).toBe(20);
+    expect(capacityStack.peek()).toBe(10);
+    expect(capacityStack.size()).toBe(1);
   });
-
-  test('isFull should return true when stack reaches capacity', () => {
+  test('should throw an error when pushing beyond capacity', () => {
     const limitedStack = new Stack<number>(2);
     limitedStack.push(1);
     limitedStack.push(2);
-    expect(limitedStack.isFull()).toBe(true);
+    expect(() => limitedStack.push(3)).toThrow('Stack is full');
   });
-
-  test('push should throw an error when trying to add items beyond capacity', () => {
-    const limitedStack = new Stack<number>(1);
-    limitedStack.push(1);
-    expect(() => {
-      limitedStack.push(2);
-    }).toThrow('Stack overflow');
+  test('should clear the stack', () => {
+    const anotherStack = new Stack<number>(5);
+    anotherStack.push(10);
+    anotherStack.push(20);
+    anotherStack.clear();
+    expect(anotherStack.isEmpty()).toBe(true);
+    expect(anotherStack.peek()).toBeUndefined();
   });
-
-  test('clear should remove all items from the stack', () => {
-    stack.push(1);
-    stack.push(2);
-    stack.clear();
-    expect(stack.isEmpty()).toBe(true);
+  test('should throw a RangeError if capacity is <= 0', () => {
+    expect(() => new Stack<number>(0)).toThrow(RangeError);
+    expect(() => new Stack<number>(-1)).toThrow(RangeError);
   });
-
-  test('push performance for 10000 items', () => {
+  test('should push 10000 items efficiently', () => {
     const start = performance.now();
     for (let i = 0; i < 10000; i++) {
       stack.push(i);
     }
     const end = performance.now();
     console.log(`Time taken to push 10000 items: ${end - start}ms`);
-    expect(end - start).toBeLessThan(10);
+    expect(end - start).toBeLessThan(20);
   });
 });

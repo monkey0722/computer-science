@@ -11,7 +11,6 @@ describe('MinHeap', () => {
     expect(heap.size()).toBe(0);
     expect(heap.isEmpty()).toBe(true);
   });
-
   test('should insert elements into the heap', () => {
     heap.insert(2);
     expect(heap.size()).toBe(1);
@@ -25,7 +24,6 @@ describe('MinHeap', () => {
     expect(heap.size()).toBe(3);
     expect(heap.peek()).toBe(1);
   });
-
   test('should extract the minimum element from the heap', () => {
     heap.insert(2);
     heap.insert(3);
@@ -41,7 +39,6 @@ describe('MinHeap', () => {
     expect(heap.size()).toBe(0);
     expect(heap.isEmpty()).toBe(true);
   });
-
   test('should handle extract on an empty heap', () => {
     expect(heap.extract()).toBeUndefined();
   });
@@ -57,7 +54,6 @@ describe('MinHeap with large data set', () => {
 
   test('should maintain heap property on extract', () => {
     let previous = heap.extract();
-
     for (let i = 1; i < largeSize; i++) {
       const current = heap.extract();
       if (typeof current === 'number' && typeof previous === 'number') {
@@ -67,7 +63,6 @@ describe('MinHeap with large data set', () => {
     }
     expect(heap.isEmpty()).toBe(true);
   });
-
   test('should handle insert and extract operations efficiently', () => {
     const start = performance.now();
     while (!heap.isEmpty()) {
