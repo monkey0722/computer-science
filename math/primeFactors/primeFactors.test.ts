@@ -1,19 +1,25 @@
 import {primeFactors} from './primeFactors';
 
 describe('primeFactors', () => {
-  test('should return an empty array when passed 1', () => {
-    expect(primeFactors(1)).toEqual([]);
+  test('should return throw', () => {
+    expect(() => primeFactors(1)).toThrow();
   });
-  test('should return an array containing 2 and 2 when passed 4', () => {
+  test('primeFactors(2) => [2]', () => {
+    expect(primeFactors(2)).toEqual([2]);
+  });
+  test('primeFactors(3) => [3]', () => {
+    expect(primeFactors(3)).toEqual([3]);
+  });
+  test('primeFactors(4) => [2, 2]', () => {
     expect(primeFactors(4)).toEqual([2, 2]);
   });
-  test('should return an array containing 2, 3, and 5 when passed 30', () => {
-    expect(primeFactors(30)).toEqual([2, 3, 5]);
+  test('primeFactors(18) => [2, 3, 3]', () => {
+    expect(primeFactors(18)).toEqual([2, 3, 3]);
   });
-  test('should return an array containing 2, 2, 2, and 3 when passed 24', () => {
-    expect(primeFactors(24)).toEqual([2, 2, 2, 3]);
+  test('primeFactors(100) => [2, 2, 5, 5]', () => {
+    expect(primeFactors(100)).toEqual([2, 2, 5, 5]);
   });
-  test('should return an array containing 2 and 7 when passed 14', () => {
-    expect(primeFactors(14)).toEqual([2, 7]);
+  test('primeFactors(9973) => [9973] (9973 is prime)', () => {
+    expect(primeFactors(9973)).toEqual([9973]);
   });
 });
