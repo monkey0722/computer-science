@@ -1,21 +1,22 @@
 import {factorial} from './factorial';
 
 describe('factorial', () => {
-  it('should return 1 when passed 0', () => {
+  test('factorial(0) should return 1', () => {
     expect(factorial(0)).toBe(1);
   });
-  it('should return 1 when passed 1', () => {
+  test('factorial(1) should return 1', () => {
     expect(factorial(1)).toBe(1);
   });
-  it('should return 24 when passed 4', () => {
-    expect(factorial(4)).toBe(24);
+  test('factorial(2) should return 2', () => {
+    expect(factorial(2)).toBe(2);
   });
-  it('should return 120 when passed 5', () => {
+  test('factorial(5) should return 120', () => {
     expect(factorial(5)).toBe(120);
   });
-  it('should throw an error when passed a negative number', () => {
-    expect(() => {
-      factorial(-1);
-    }).toThrow();
+  test('factorial(10) should return 3628800', () => {
+    expect(factorial(10)).toBe(3628800);
+  });
+  test('negative input should throw RangeError', () => {
+    expect(() => factorial(-1)).toThrow(RangeError);
   });
 });
