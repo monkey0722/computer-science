@@ -1,17 +1,14 @@
 {
   "name": "computer-science",
   "version": "1.0.0",
-  "description": "",
+  "description": "Computer Science in TypeScript",
   "main": "",
   "scripts": {
     "test": "jest",
     "typecheck": "tsc --noEmit --skipLibCheck",
     "lint": "eslint ./**/*.ts",
     "lint-fix": "eslint --fix ./**/*.ts",
-    "prettier": "prettier --write \"./**/*.{ts,tsx}\" --ignore-path \".gitignore\""
-  },
-  "dependencies": {
-    "typescript": "^5.7.2"
+    "prettier": "prettier --write './**/*.{js,ts,tsx}' --ignore-path '.gitignore'"
   },
   "devDependencies": {
     "@types/jest": "^29.5.14",
@@ -23,7 +20,8 @@
     "lint-staged": "^15.2.11",
     "prettier": "^3.4.2",
     "ts-jest": "^29.2.5",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -34,7 +32,7 @@
   },
   "jest": {
     "transform": {
-      "^.+\\.tsx?$": "ts-jest"
+      "^.+\\.tsx?$": ["ts-jest", { "tsconfig": "tsconfig.json" }]
     }
   },
   "repository": {
