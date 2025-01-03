@@ -16,10 +16,8 @@ export class BellmanFord {
    * @throws {Error} If the input parameters are invalid.
    */
   static findShortestPaths(vertices: number, edges: Edge[], source: number): number[] | null {
-    // Validate input
     this.validateInput(vertices, edges, source);
 
-    // Initialize distances
     const distances = new Array(vertices).fill(Infinity);
     distances[source] = 0;
 
