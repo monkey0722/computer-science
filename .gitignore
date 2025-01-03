@@ -1,5 +1,9 @@
-# npm yarn
-/node_modules
-/npm-debug.log
-package-lock.json
-yarn-*.log
+# OSX
+#
+.DS_Store
+
+# node.js
+#
+node_modules/
+npm-debug.log
+yarn-error.log
