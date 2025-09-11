@@ -2,12 +2,13 @@
   "name": "computer-science",
   "version": "1.0.0",
   "description": "Computer Science in TypeScript",
+  "license": "ISC",
   "main": "",
   "scripts": {
     "test": "jest",
     "typecheck": "tsc --noEmit --skipLibCheck",
     "lint": "eslint ./**/*.ts",
-    "lint-fix": "eslint --fix ./**/*.ts",
+    "lint:fix": "eslint --fix ./**/*.ts",
     "prettier": "prettier --write './**/*.{js,ts,tsx}' --ignore-path '.gitignore'"
   },
   "devDependencies": {
@@ -32,17 +33,13 @@
   },
   "jest": {
     "transform": {
-      "^.+\\.tsx?$": ["ts-jest", { "tsconfig": "tsconfig.json" }]
+      "^.+\\.tsx?$": [
+        "ts-jest",
+        {
+          "tsconfig": "tsconfig.json"
+        }
+      ]
     }
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/monkey0722/computer-science.git"
-  },
-  "author": "monkey0722",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/monkey0722/computer-science/issues"
-  },
-  "homepage": "https://github.com/monkey0722/computer-science#readme"
+  "packageManager": "yarn@1.22.22"
 }
