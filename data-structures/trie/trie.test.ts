@@ -33,6 +33,6 @@ describe('Trie', () => {
     expect(trie.findWords('cat')).toEqual([]);
   });
   test('should throw an error for empty string insertion', () => {
-    expect(() => trie.insert('')).toThrowError('Cannot insert an empty string');
+    expect(() => trie.insert('')).toThrow('Cannot insert an empty string');
   });
 });
