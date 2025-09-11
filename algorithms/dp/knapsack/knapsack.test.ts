@@ -51,7 +51,7 @@ describe('Knapsack', () => {
         {weight: 3, value: 4},
       ];
       const capacity = 5;
-      expect(() => Knapsack.solve(items, capacity)).toThrowError(
+      expect(() => Knapsack.solve(items, capacity)).toThrow(
         'Item weights and values must be non-negative',
       );
     });
@@ -94,7 +94,7 @@ describe('Knapsack', () => {
         {weight: 10, value: 50},
       ];
       const capacity = 15;
-      expect(() => Knapsack.solveFractional(items, capacity)).toThrowError(
+      expect(() => Knapsack.solveFractional(items, capacity)).toThrow(
         'Item weights and values must be non-negative',
       );
     });

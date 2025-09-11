@@ -13,7 +13,7 @@ describe('UnionFind', () => {
     expect(uf.connected(1, 1)).toBe(true);
   });
   test('should throw an error when find is called on a non-existent element', () => {
-    expect(() => uf.find(1)).toThrowError('Element 1 not found in any set');
+    expect(() => uf.find(1)).toThrow('Element 1 not found in any set');
   });
   test('should connect two elements using union', () => {
     uf.makeSet(1);
@@ -58,7 +58,7 @@ describe('UnionFind', () => {
     expect(uf.connected(1, 2)).toBe(false);
   });
   test('should throw an error when getSize is called on a non-existent element', () => {
-    expect(() => uf.getSize(1)).toThrowError('Element 1 not found in any set');
+    expect(() => uf.getSize(1)).toThrow('Element 1 not found in any set');
   });
   test('should correctly manage set sizes', () => {
     uf.makeSet(1);

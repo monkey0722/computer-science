@@ -34,13 +34,13 @@ describe('BellmanFord', () => {
       {source: 0, target: 1, weight: 4},
       {source: 1, target: 2, weight: 3},
     ];
-    expect(() => BellmanFord.findShortestPaths(0, edges, 0)).toThrowError(
+    expect(() => BellmanFord.findShortestPaths(0, edges, 0)).toThrow(
       'Number of vertices must be positive',
     );
   });
   test('should throw error for invalid edge vertices', () => {
     const edges = [{source: 0, target: 5, weight: 4}];
-    expect(() => BellmanFord.findShortestPaths(4, edges, 0)).toThrowError(
+    expect(() => BellmanFord.findShortestPaths(4, edges, 0)).toThrow(
       'Edge contains an invalid vertex',
     );
   });
