@@ -1,36 +1,28 @@
 {
   "compilerOptions": {
     "module": "NodeNext",
-    "target": "ESNext",
-    "lib": ["ES2023", "DOM"],
-    "sourceMap": true,
-    "allowJs": true,
     "moduleResolution": "NodeNext",
+    "target": "ES2024",
+    "lib": ["ES2024", "DOM"],
+    "isolatedModules": true,
+    "strict": true,
     "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "strictNullChecks": true,
-    "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+    "sourceMap": true,
     "baseUrl": ".",
     "paths": {
       "~": ["./"]
-    }
+    },
+    "types": ["node", "jest"]
   },
   "include": [
     "./data-structures/**/*",
     "./math/**/*",
     "./algorithms/**/*"
   ],
-  "exclude": [
-    "node_modules"
-  ],
-  "types": [
-    "node",
-    "typePatches"
-  ]
+  "exclude": ["node_modules"]
 }
