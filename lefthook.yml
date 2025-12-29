@@ -1,0 +1,11 @@
+pre-commit:
+  parallel: true
+  jobs:
+    - name: prettier
+      glob: "*.{ts,tsx}"
+      run: prettier --write {staged_files}
+      stage_fixed: true
+    - name: eslint
+      glob: "*.{ts,tsx}"
+      run: eslint --fix {staged_files}
+      stage_fixed: true
