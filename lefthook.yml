@@ -3,9 +3,9 @@ pre-commit:
   jobs:
     - name: prettier
       glob: "*.{ts,tsx}"
-      run: prettier --write {staged_files}
+      run: yarn prettier --write {staged_files}
       stage_fixed: true
     - name: eslint
       glob: "*.{ts,tsx}"
-      run: eslint --fix {staged_files}
+      run: yarn eslint --fix {staged_files}
       stage_fixed: true
