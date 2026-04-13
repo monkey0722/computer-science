@@ -1,7 +1,7 @@
-const parser = require('@typescript-eslint/parser');
-const typescriptPlugin = require('@typescript-eslint/eslint-plugin');
+import parser from '@typescript-eslint/parser';
+import typescriptPlugin from '@typescript-eslint/eslint-plugin';
 
-module.exports = [
+export default [
   {
     files: ['**/*.ts'],
     languageOptions: {
@@ -9,14 +9,13 @@ module.exports = [
       parserOptions: {
         sourceType: 'module',
         project: './tsconfig.json',
-        tsconfigRootDir: __dirname,
+        tsconfigRootDir: import.meta.dirname,
       },
     },
     plugins: {
       '@typescript-eslint': typescriptPlugin,
     },
     rules: {
-      'no-extra-semi': 'off',
       'no-irregular-whitespace': ['error', {skipTemplates: true}],
       '@typescript-eslint/no-unused-vars': 'error',
       '@typescript-eslint/no-useless-constructor': 'error',
