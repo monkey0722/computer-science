@@ -2,8 +2,8 @@
   "compilerOptions": {
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "target": "ES2025",
-    "lib": ["ES2025", "DOM"],
+    "target": "ES2024",
+    "lib": ["ES2024", "DOM"],
     "isolatedModules": true,
     "strict": true,
     "noImplicitReturns": true,
