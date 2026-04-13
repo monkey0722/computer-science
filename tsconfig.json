@@ -2,21 +2,16 @@
   "compilerOptions": {
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "target": "ES2024",
-    "lib": ["ES2024", "DOM"],
+    "target": "ES2025",
+    "lib": ["ES2025", "DOM"],
     "isolatedModules": true,
     "strict": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "sourceMap": true,
-    "baseUrl": ".",
-    "paths": {
-      "~": ["./"]
-    },
     "types": ["node", "jest"]
   },
   "include": [
