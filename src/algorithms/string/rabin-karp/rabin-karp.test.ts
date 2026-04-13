@@ -64,4 +64,19 @@ describe('Rabin-Karp Algorithm', () => {
     const pattern = 'fox';
     expect(rabinKarp(text, pattern)).toEqual([16]);
   });
+
+  test('should handle non-ASCII characters without integer overflow', () => {
+    const ch = String.fromCharCode(50000);
+    const text = ch.repeat(25);
+    const pattern = ch.repeat(3);
+    // Should find all 23 overlapping occurrences
+    const expected = Array.from({length: 23}, (_, i) => i);
+    expect(rabinKarp(text, pattern)).toEqual(expected);
+  });
+
+  test('should find pattern in Unicode text', () => {
+    const text = 'こんにちは世界、こんにちは日本';
+    const pattern = 'こんにちは';
+    expect(rabinKarp(text, pattern)).toEqual([0, 8]);
+  });
 });
