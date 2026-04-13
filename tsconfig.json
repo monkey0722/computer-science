@@ -15,9 +15,7 @@
     "types": ["node", "jest"]
   },
   "include": [
-    "./data-structures/**/*",
-    "./math/**/*",
-    "./algorithms/**/*"
+    "./src/**/*"
   ],
   "exclude": ["node_modules"]
 }
