@@ -11,9 +11,9 @@ describe('DFS Algorithm (Iterative)', () => {
       [2], // Edges from vertex 5
     ];
     const {visited, predecessors} = dfs(graph, 0);
-    expect(visited[0]).toBe(0);
-    expect(visited.length).toBe(6);
-    expect(new Set(visited).size).toBe(6);
+    // Iterative DFS uses a stack (LIFO), so the last neighbor pushed
+    // is visited first — yielding a different order from recursive DFS.
+    expect(visited).toEqual([0, 2, 5, 1, 4, 3]);
     expect(predecessors[0]).toBe(-1);
   });
 
@@ -118,6 +118,17 @@ describe('DFS Algorithm (Recursive)', () => {
     const {visited, predecessors} = dfsRecursive(graph, 0);
     expect(visited).toEqual([0]);
     expect(predecessors).toEqual([-1]);
+  });
+});
+
+describe('DFS Recursive - stack depth limitation', () => {
+  test('should throw RangeError on a very deep linear graph', () => {
+    const depth = 20000;
+    const deepGraph: number[][] = Array(depth)
+      .fill(0)
+      .map((_, i) => (i < depth - 1 ? [i + 1] : []));
+
+    expect(() => dfsRecursive(deepGraph, 0)).toThrow(RangeError);
   });
 });
 

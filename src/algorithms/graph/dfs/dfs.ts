@@ -45,6 +45,11 @@ export function dfs(
 /**
  * Performs a recursive depth-first search (DFS) traversal on a graph.
  *
+ * Note: This implementation uses the call stack for recursion, so it may throw
+ * a RangeError (Maximum call stack size exceeded) on graphs with depth
+ * exceeding ~10,000 vertices. For large or deep graphs, use the iterative
+ * {@link dfs} instead.
+ *
  * @param {number[][]} graph - An adjacency list representation of the graph.
  * @param {number} start - The starting vertex.
  * @returns {{ visited: number[], predecessors: number[] }}
