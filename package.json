@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit --skipLibCheck",
     "lint": "eslint ./**/*.ts",
     "lint:fix": "eslint --fix ./**/*.ts",
-    "prettier": "prettier --write './**/*.{js,ts,tsx}' --ignore-path '.gitignore'"
+    "prettier": "prettier --write './**/*.{js,ts,tsx}' --ignore-path '.gitignore'",
+    "check:all": "yarn test && yarn lint && yarn typecheck"
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
